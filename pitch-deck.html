@@ -1363,55 +1363,70 @@
   <!-- SLIDE 4: DEMO -->
   <section class="slide" id="slide-4">
     <div class="slide-content">
-      <h2 style="text-align: center;">Как это выглядит</h2>
+      <h2 style="text-align: center;">Реальный продукт</h2>
 
       <div class="demo-container">
-        <!-- Upload Phone -->
-        <div class="phone-mockup">
-          <div class="phone-screen">
-            <div class="phone-title">Загрузите фото</div>
-            <div class="upload-grid">
-              <div class="upload-photo"></div>
-              <div class="upload-photo"></div>
-              <div class="upload-photo"></div>
-              <div class="upload-photo"></div>
-              <div class="upload-photo"></div>
-              <div class="upload-photo" style="opacity: 0.3; border: 2px dashed #666; background: transparent;"></div>
-            </div>
-            <p style="font-size: 13px; color: var(--text-muted); text-align: center; margin-bottom: 16px;">5 из 8 фото загружено</p>
-            <button class="upload-btn">Продолжить →</button>
+        <!-- Real Screenshot -->
+        <div style="text-align: center; flex: 2;">
+          <div style="background: linear-gradient(145deg, #1e1e22, #16161a); border-radius: 24px; padding: 20px; display: inline-block; box-shadow: 0 25px 80px rgba(0,0,0,0.5);">
+            <img src="pinglass-screenshot.png" alt="PinGlass App" style="max-width: 500px; border-radius: 16px; display: block;">
           </div>
-          <div class="phone-label">1. Загрузка фото</div>
+          <p style="margin-top: 16px; color: var(--text-muted);">Onboarding экран — анимированные AI-портреты</p>
         </div>
 
-        <!-- Generating Phone -->
-        <div class="phone-mockup">
-          <div class="phone-screen" style="justify-content: center; align-items: center;">
-            <div class="generating-progress"></div>
-            <p class="generating-text">Генерируем ваши портреты...</p>
-            <p class="generating-text" style="color: var(--text-muted); margin-top: 8px;">Осталось ~4 минуты</p>
-          </div>
-          <div class="phone-label">2. Генерация AI</div>
-        </div>
-
-        <!-- Results Phone -->
-        <div class="phone-mockup">
-          <div class="phone-screen">
-            <div class="phone-title">Ваши портреты готовы! 🎉</div>
-            <div class="results-grid">
-              <div class="result-photo">👔</div>
-              <div class="result-photo">🌅</div>
-              <div class="result-photo">🎨</div>
-              <div class="result-photo">📸</div>
-              <div class="result-photo">✨</div>
-              <div class="result-photo">🌟</div>
-              <div class="result-photo">💼</div>
-              <div class="result-photo">🏖️</div>
-              <div class="result-photo">🎭</div>
+        <!-- Process Flow -->
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
+          <div class="card" style="padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">📸</div>
+              <div>
+                <div style="font-weight: 600;">1. Загрузка</div>
+                <div style="font-size: 13px; color: var(--text-muted);">5-8 селфи</div>
+              </div>
             </div>
-            <button class="upload-btn" style="margin-top: 16px;">Скачать все</button>
           </div>
-          <div class="phone-label">3. Результат</div>
+          <div class="card" style="padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">🎨</div>
+              <div>
+                <div style="font-weight: 600;">2. Выбор стиля</div>
+                <div style="font-size: 13px; color: var(--text-muted);">Professional / Lifestyle / Creative</div>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">💳</div>
+              <div>
+                <div style="font-weight: 600;">3. Оплата</div>
+                <div style="font-size: 13px; color: var(--text-muted);">T-Bank / Stars / TON</div>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="padding: 20px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--success), #22c55e); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">✨</div>
+              <div>
+                <div style="font-weight: 600;">4. Результат</div>
+                <div style="font-size: 13px; color: var(--text-muted);">23 AI-портрета за 10 мин</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top: 32px;">
+        <div class="card" style="text-align: center; padding: 16px;">
+          <div style="font-size: 24px; font-weight: 700; color: var(--primary);">Telegram Mini App</div>
+          <div style="font-size: 13px; color: var(--text-muted);">запуск в 2 клика</div>
+        </div>
+        <div class="card" style="text-align: center; padding: 16px;">
+          <div style="font-size: 24px; font-weight: 700; color: var(--accent);">Kie.ai + Replicate</div>
+          <div style="font-size: 13px; color: var(--text-muted);">AI генерация с fallback</div>
+        </div>
+        <div class="card" style="text-align: center; padding: 16px;">
+          <div style="font-size: 24px; font-weight: 700; color: var(--success);">Real-time</div>
+          <div style="font-size: 13px; color: var(--text-muted);">уведомления в Telegram</div>
         </div>
       </div>
     </div>
@@ -1517,22 +1532,22 @@
             </div>
           </div>
           <div class="market-title">SOM</div>
-          <div class="market-desc">Telegram-аудитория через партнёров</div>
+          <div class="market-desc">Дейтинг + Telegram через партнёров</div>
         </div>
       </div>
 
       <div class="grid-3" style="margin-top: 40px;">
         <div class="card" style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 8px;">15M+</div>
+          <div style="color: var(--text-muted);">пользователей Давинчик (дейтинг)</div>
+        </div>
+        <div class="card" style="text-align: center;">
           <div style="font-size: 36px; margin-bottom: 8px;">90M+</div>
-          <div style="color: var(--text-muted);">пользователей Telegram в России</div>
+          <div style="color: var(--text-muted);">Telegram в России</div>
         </div>
         <div class="card" style="text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">30%</div>
-          <div style="color: var(--text-muted);">рост рынка AI-фото в год</div>
-        </div>
-        <div class="card" style="text-align: center;">
-          <div style="font-size: 36px; margin-bottom: 8px;">₽50B+</div>
-          <div style="color: var(--text-muted);">рынок фотоуслуг в России</div>
+          <div style="font-size: 36px; margin-bottom: 8px;">30M+</div>
+          <div style="color: var(--text-muted);">дейтинг-аудитория РФ (Mamba, Badoo)</div>
         </div>
       </div>
     </div>
@@ -1558,30 +1573,30 @@
           <div class="pricing-name">Standard</div>
           <div class="pricing-photos">15</div>
           <div class="pricing-photos-label">AI-портретов</div>
-          <div class="pricing-price">799 ₽</div>
-          <div class="pricing-per">~53 ₽ за фото</div>
+          <div class="pricing-price">999 ₽</div>
+          <div class="pricing-per">~67 ₽ за фото</div>
         </div>
 
         <div class="pricing-card">
           <div class="pricing-name">Premium</div>
           <div class="pricing-photos">23</div>
           <div class="pricing-photos-label">AI-портретов</div>
-          <div class="pricing-price">1 199 ₽</div>
-          <div class="pricing-per">~52 ₽ за фото</div>
+          <div class="pricing-price">1 499 ₽</div>
+          <div class="pricing-per">~65 ₽ за фото</div>
         </div>
       </div>
 
       <div class="grid-3" style="margin-top: 30px;">
         <div class="card" style="text-align: center;">
-          <div style="font-size: 28px; font-weight: 700; color: var(--success);">~700 ₽</div>
+          <div style="font-size: 28px; font-weight: 700; color: var(--success);">~900 ₽</div>
           <div style="color: var(--text-muted); margin-top: 4px;">средний чек</div>
         </div>
         <div class="card" style="text-align: center;">
-          <div style="font-size: 28px; font-weight: 700; color: var(--success);">24-28%</div>
-          <div style="color: var(--text-muted); margin-top: 4px;">чистая маржа</div>
+          <div style="font-size: 28px; font-weight: 700; color: var(--success);">14-16%</div>
+          <div style="color: var(--text-muted); margin-top: 4px;">маржа с партнёром</div>
         </div>
         <div class="card" style="text-align: center;">
-          <div style="font-size: 28px; font-weight: 700; color: var(--success);">1.9×</div>
+          <div style="font-size: 28px; font-weight: 700; color: var(--success);">2.1×</div>
           <div style="color: var(--text-muted); margin-top: 4px;">LTV / CAC</div>
         </div>
       </div>
@@ -1600,67 +1615,67 @@
           <tr>
             <th>Статья</th>
             <th>Starter (499₽)</th>
-            <th>Standard (799₽)</th>
-            <th>Premium (1199₽)</th>
+            <th>Standard (999₽)</th>
+            <th>Premium (1499₽)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Выручка</td>
             <td>499 ₽</td>
-            <td>799 ₽</td>
-            <td>1 199 ₽</td>
+            <td>999 ₽</td>
+            <td>1 499 ₽</td>
           </tr>
           <tr>
-            <td>Kie.ai (генерация + retry)</td>
-            <td class="unit-negative">−60 ₽</td>
-            <td class="unit-negative">−125 ₽</td>
-            <td class="unit-negative">−190 ₽</td>
+            <td>Kie.ai ($0.15/фото × ~110₽/$)</td>
+            <td class="unit-negative">−116 ₽</td>
+            <td class="unit-negative">−248 ₽</td>
+            <td class="unit-negative">−380 ₽</td>
           </tr>
           <tr>
             <td>Партнёру 50%</td>
             <td class="unit-negative">−250 ₽</td>
-            <td class="unit-negative">−400 ₽</td>
-            <td class="unit-negative">−600 ₽</td>
+            <td class="unit-negative">−500 ₽</td>
+            <td class="unit-negative">−750 ₽</td>
           </tr>
           <tr>
-            <td>Платёжная комиссия 5%</td>
-            <td class="unit-negative">−25 ₽</td>
-            <td class="unit-negative">−40 ₽</td>
-            <td class="unit-negative">−60 ₽</td>
+            <td>Платёжная комиссия 3%</td>
+            <td class="unit-negative">−15 ₽</td>
+            <td class="unit-negative">−30 ₽</td>
+            <td class="unit-negative">−45 ₽</td>
           </tr>
           <tr>
             <td>УСН 6%</td>
             <td class="unit-negative">−30 ₽</td>
-            <td class="unit-negative">−48 ₽</td>
-            <td class="unit-negative">−72 ₽</td>
+            <td class="unit-negative">−60 ₽</td>
+            <td class="unit-negative">−90 ₽</td>
           </tr>
           <tr>
-            <td>Рефанды 3%</td>
-            <td class="unit-negative">−15 ₽</td>
-            <td class="unit-negative">−24 ₽</td>
-            <td class="unit-negative">−36 ₽</td>
+            <td>Рефанды 2%</td>
+            <td class="unit-negative">−10 ₽</td>
+            <td class="unit-negative">−20 ₽</td>
+            <td class="unit-negative">−30 ₽</td>
           </tr>
           <tr>
             <td><strong>Чистая прибыль</strong></td>
-            <td class="unit-highlight">119 ₽ (24%)</td>
-            <td class="unit-highlight">162 ₽ (20%)</td>
-            <td class="unit-highlight">241 ₽ (20%)</td>
+            <td class="unit-highlight">78 ₽ (16%)</td>
+            <td class="unit-highlight">141 ₽ (14%)</td>
+            <td class="unit-highlight">204 ₽ (14%)</td>
           </tr>
         </tbody>
       </table>
 
       <div class="unit-summary">
         <div class="unit-box">
-          <div class="unit-box-value" style="color: var(--primary);">~175 ₽</div>
+          <div class="unit-box-value" style="color: var(--primary);">~150 ₽</div>
           <div class="unit-box-label">Средняя прибыль с платежа</div>
         </div>
         <div class="unit-box">
-          <div class="unit-box-value" style="color: var(--success);">~350 ₽</div>
+          <div class="unit-box-value" style="color: var(--success);">~450 ₽</div>
           <div class="unit-box-label">CAC (50% от первого чека)</div>
         </div>
         <div class="unit-box">
-          <div class="unit-box-value" style="color: var(--accent);">~680 ₽</div>
+          <div class="unit-box-value" style="color: var(--accent);">~950 ₽</div>
           <div class="unit-box-label">LTV (с учётом повторов)</div>
         </div>
       </div>
@@ -1713,13 +1728,13 @@
           </ul>
         </div>
         <div class="card">
-          <h3>🚀 Следующие шаги</h3>
+          <h3>🎯 Целевая аудитория</h3>
           <ul style="list-style: none; margin-top: 16px;">
-            <li style="padding: 8px 0; color: var(--text-secondary);">→ Запуск с первым партнёром (YouTube 50K)</li>
-            <li style="padding: 8px 0; color: var(--text-secondary);">→ Масштабирование партнёрской сети</li>
-            <li style="padding: 8px 0; color: var(--text-secondary);">→ Добавление новых стилей</li>
-            <li style="padding: 8px 0; color: var(--text-secondary);">→ Интеграция с Instagram</li>
-            <li style="padding: 8px 0; color: var(--text-secondary);">→ B2B сегмент (корпоративы)</li>
+            <li style="padding: 8px 0; color: var(--text-secondary);">→ <strong>Дейтинг-сервисы</strong> — фото для анкет</li>
+            <li style="padding: 8px 0; color: var(--text-secondary);">→ Давинчик: <strong>15 000 000+</strong> пользователей</li>
+            <li style="padding: 8px 0; color: var(--text-secondary);">→ Mamba, Badoo, Tinder аудитория</li>
+            <li style="padding: 8px 0; color: var(--text-secondary);">→ LinkedIn/резюме профессионалы</li>
+            <li style="padding: 8px 0; color: var(--text-secondary);">→ Инфлюенсеры (контент для соцсетей)</li>
           </ul>
         </div>
       </div>
@@ -1745,7 +1760,7 @@
         <tbody>
           <tr class="competitor-us">
             <td>Цена</td>
-            <td><strong>499-1199 ₽</strong></td>
+            <td><strong>499-1499 ₽</strong></td>
             <td>599-2999 ₽</td>
             <td>$7.99-29.99</td>
             <td>5000-15000 ₽</td>
@@ -1871,21 +1886,21 @@
 
       <div class="gtm-timeline">
         <div class="gtm-phase">
-          <div class="gtm-phase-icon">🚀</div>
-          <div class="gtm-phase-title">Запуск</div>
-          <div class="gtm-phase-desc">YouTube канал 50K подписчиков. Активное продвижение партнёрки в ролике.</div>
+          <div class="gtm-phase-icon">💕</div>
+          <div class="gtm-phase-title">Дейтинг</div>
+          <div class="gtm-phase-desc">Интеграция с Давинчик (15М+). Фото для анкет — идеальный product-market fit.</div>
         </div>
 
         <div class="gtm-phase">
           <div class="gtm-phase-icon">📈</div>
           <div class="gtm-phase-title">Виральность</div>
-          <div class="gtm-phase-desc">Блогеры приводят блогеров. K-фактор 1.5× — каждый партнёр приводит ещё 1-2.</div>
+          <div class="gtm-phase-desc">Пользователи делятся результатами. K-фактор 1.8× в дейтинг-аудитории.</div>
         </div>
 
         <div class="gtm-phase">
-          <div class="gtm-phase-icon">🎯</div>
-          <div class="gtm-phase-title">Масштаб</div>
-          <div class="gtm-phase-desc">Сеть из 70+ партнёров к концу года. Органический поток клиентов.</div>
+          <div class="gtm-phase-icon">🌐</div>
+          <div class="gtm-phase-title">Экспансия</div>
+          <div class="gtm-phase-desc">Mamba, Badoo, Tinder аудитория. LinkedIn профессионалы. B2B.</div>
         </div>
       </div>
 
@@ -1919,119 +1934,119 @@
   <!-- SLIDE 13: FINANCIALS -->
   <section class="slide" id="slide-13">
     <div class="slide-content">
-      <h2>Финансовый прогноз</h2>
-      <p class="subtitle">Три сценария на 12 месяцев — без затрат на платную рекламу</p>
+      <h2>Финансовый прогноз: 5М за 3 месяца</h2>
+      <p class="subtitle">Агрессивный рост через дейтинг-аудиторию (15М+ Давинчик)</p>
 
       <div class="finance-scenarios">
         <div class="finance-scenario">
-          <div class="finance-scenario-icon">🐻</div>
-          <div class="finance-scenario-title">Bear</div>
-          <div class="finance-scenario-prob">Вероятность 25%</div>
-          <div class="finance-row"><span>Партнёров</span><span>40</span></div>
-          <div class="finance-row"><span>Платежей</span><span>1,500</span></div>
-          <div class="finance-row"><span>Выручка</span><span>1.0M ₽</span></div>
-          <div class="finance-row"><span>Прибыль</span><span>150K ₽</span></div>
+          <div class="finance-scenario-icon">📅</div>
+          <div class="finance-scenario-title">Месяц 1</div>
+          <div class="finance-scenario-prob">Запуск + интеграции</div>
+          <div class="finance-row"><span>Платежей</span><span>5,000</span></div>
+          <div class="finance-row"><span>Средний чек</span><span>900 ₽</span></div>
+          <div class="finance-row"><span>Выручка</span><span>4.5M ₽</span></div>
+          <div class="finance-row"><span>Прибыль</span><span>750K ₽</span></div>
         </div>
 
         <div class="finance-scenario base">
-          <div class="finance-scenario-icon">📊</div>
-          <div class="finance-scenario-title">Base</div>
-          <div class="finance-scenario-prob">Вероятность 50%</div>
-          <div class="finance-row"><span>Партнёров</span><span>70</span></div>
-          <div class="finance-row"><span>Платежей</span><span>2,800</span></div>
-          <div class="finance-row"><span>Выручка</span><span>2.1M ₽</span></div>
-          <div class="finance-row"><span>Прибыль</span><span>520K ₽</span></div>
+          <div class="finance-scenario-icon">📈</div>
+          <div class="finance-scenario-title">Месяц 2</div>
+          <div class="finance-scenario-prob">Масштабирование</div>
+          <div class="finance-row"><span>Платежей</span><span>12,000</span></div>
+          <div class="finance-row"><span>Средний чек</span><span>900 ₽</span></div>
+          <div class="finance-row"><span>Выручка</span><span>10.8M ₽</span></div>
+          <div class="finance-row"><span>Прибыль</span><span>1.8M ₽</span></div>
         </div>
 
         <div class="finance-scenario">
           <div class="finance-scenario-icon">🚀</div>
-          <div class="finance-scenario-title">Bull</div>
-          <div class="finance-scenario-prob">Вероятность 25%</div>
-          <div class="finance-row"><span>Партнёров</span><span>150</span></div>
-          <div class="finance-row"><span>Платежей</span><span>8,000</span></div>
-          <div class="finance-row"><span>Выручка</span><span>5.5M ₽</span></div>
-          <div class="finance-row"><span>Прибыль</span><span>1.8M ₽</span></div>
+          <div class="finance-scenario-title">Месяц 3</div>
+          <div class="finance-scenario-prob">Виральный эффект</div>
+          <div class="finance-row"><span>Платежей</span><span>18,000</span></div>
+          <div class="finance-row"><span>Средний чек</span><span>950 ₽</span></div>
+          <div class="finance-row"><span>Выручка</span><span>17.1M ₽</span></div>
+          <div class="finance-row"><span>Прибыль</span><span>2.85M ₽</span></div>
         </div>
       </div>
 
       <div class="finance-chart">
-        <h3>Помесячный прогноз (Base сценарий с учётом сезонности)</h3>
+        <h3>Путь к 5М прибыли: конверсия дейтинг-аудитории</h3>
         <div class="chart-bars">
           <div class="chart-bar">
-            <div class="chart-bar-value">2K</div>
-            <div class="chart-bar-fill" style="height: 10px;"></div>
-            <div class="chart-bar-label">Янв</div>
+            <div class="chart-bar-value">500K</div>
+            <div class="chart-bar-fill" style="height: 30px;"></div>
+            <div class="chart-bar-label">Нед 1</div>
           </div>
           <div class="chart-bar">
-            <div class="chart-bar-value">5K</div>
-            <div class="chart-bar-fill" style="height: 20px;"></div>
-            <div class="chart-bar-label">Фев</div>
+            <div class="chart-bar-value">750K</div>
+            <div class="chart-bar-fill" style="height: 45px;"></div>
+            <div class="chart-bar-label">Нед 2</div>
           </div>
           <div class="chart-bar">
-            <div class="chart-bar-value">12K</div>
-            <div class="chart-bar-fill" style="height: 35px;"></div>
-            <div class="chart-bar-label">Мар</div>
+            <div class="chart-bar-value">1M</div>
+            <div class="chart-bar-fill" style="height: 60px;"></div>
+            <div class="chart-bar-label">Нед 3</div>
           </div>
           <div class="chart-bar">
-            <div class="chart-bar-value">14K</div>
-            <div class="chart-bar-fill" style="height: 40px;"></div>
-            <div class="chart-bar-label">Апр</div>
+            <div class="chart-bar-value">1.2M</div>
+            <div class="chart-bar-fill" style="height: 72px;"></div>
+            <div class="chart-bar-label">Нед 4</div>
           </div>
           <div class="chart-bar">
-            <div class="chart-bar-value">12K</div>
-            <div class="chart-bar-fill" style="height: 35px;"></div>
-            <div class="chart-bar-label">Май</div>
-          </div>
-          <div class="chart-bar">
-            <div class="chart-bar-value">13K</div>
-            <div class="chart-bar-fill" style="height: 37px;"></div>
-            <div class="chart-bar-label">Июн</div>
-          </div>
-          <div class="chart-bar">
-            <div class="chart-bar-value">13K</div>
-            <div class="chart-bar-fill" style="height: 37px;"></div>
-            <div class="chart-bar-label">Июл</div>
-          </div>
-          <div class="chart-bar">
-            <div class="chart-bar-value">23K</div>
-            <div class="chart-bar-fill" style="height: 55px;"></div>
-            <div class="chart-bar-label">Авг</div>
-          </div>
-          <div class="chart-bar">
-            <div class="chart-bar-value">51K</div>
+            <div class="chart-bar-value">1.5M</div>
             <div class="chart-bar-fill" style="height: 90px;"></div>
-            <div class="chart-bar-label">Сен</div>
+            <div class="chart-bar-label">Нед 5</div>
           </div>
           <div class="chart-bar">
-            <div class="chart-bar-value">66K</div>
-            <div class="chart-bar-fill" style="height: 110px;"></div>
-            <div class="chart-bar-label">Окт</div>
+            <div class="chart-bar-value">1.8M</div>
+            <div class="chart-bar-fill" style="height: 108px;"></div>
+            <div class="chart-bar-label">Нед 6</div>
           </div>
           <div class="chart-bar">
-            <div class="chart-bar-value">112K</div>
+            <div class="chart-bar-value">2.2M</div>
+            <div class="chart-bar-fill" style="height: 132px;"></div>
+            <div class="chart-bar-label">Нед 7</div>
+          </div>
+          <div class="chart-bar">
+            <div class="chart-bar-value">2.5M</div>
             <div class="chart-bar-fill" style="height: 150px;"></div>
-            <div class="chart-bar-label">Ноя</div>
+            <div class="chart-bar-label">Нед 8</div>
           </div>
           <div class="chart-bar">
-            <div class="chart-bar-value">197K</div>
-            <div class="chart-bar-fill" style="height: 200px;"></div>
-            <div class="chart-bar-label">Дек</div>
+            <div class="chart-bar-value">3M</div>
+            <div class="chart-bar-fill" style="height: 170px;"></div>
+            <div class="chart-bar-label">Нед 9</div>
+          </div>
+          <div class="chart-bar">
+            <div class="chart-bar-value">3.5M</div>
+            <div class="chart-bar-fill" style="height: 180px;"></div>
+            <div class="chart-bar-label">Нед 10</div>
+          </div>
+          <div class="chart-bar">
+            <div class="chart-bar-value">4.2M</div>
+            <div class="chart-bar-fill" style="height: 190px;"></div>
+            <div class="chart-bar-label">Нед 11</div>
+          </div>
+          <div class="chart-bar">
+            <div class="chart-bar-value">5M+</div>
+            <div class="chart-bar-fill" style="height: 200px; background: var(--success);"></div>
+            <div class="chart-bar-label">Нед 12</div>
           </div>
         </div>
       </div>
 
       <div class="grid-3" style="margin-top: 24px;">
         <div class="card" style="text-align: center;">
-          <div style="font-size: 28px; font-weight: 700; color: var(--accent);">730K ₽</div>
-          <div style="color: var(--text-muted); margin-top: 4px;">Expected Value прибыли</div>
+          <div style="font-size: 28px; font-weight: 700; color: var(--success);">5.4M ₽</div>
+          <div style="color: var(--text-muted); margin-top: 4px;">прибыль за 3 месяца</div>
         </div>
         <div class="card" style="text-align: center;">
-          <div style="font-size: 28px; font-weight: 700; color: var(--success);">0 ₽</div>
+          <div style="font-size: 28px; font-weight: 700; color: var(--accent);">35,000</div>
+          <div style="color: var(--text-muted); margin-top: 4px;">платежей (0.2% от 15М)</div>
+        </div>
+        <div class="card" style="text-align: center;">
+          <div style="font-size: 28px; font-weight: 700; color: var(--primary);">0 ₽</div>
           <div style="color: var(--text-muted); margin-top: 4px;">затраты на рекламу</div>
-        </div>
-        <div class="card" style="text-align: center;">
-          <div style="font-size: 28px; font-weight: 700; color: var(--primary);">День 1</div>
-          <div style="color: var(--text-muted); margin-top: 4px;">позитивный cash flow</div>
         </div>
       </div>
     </div>
