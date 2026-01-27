@@ -474,7 +474,7 @@
 <body>
     <nav>
         <h1>PinGlass</h1>
-        <div class="version">Документация v6.0</div>
+        <div class="version">Документация v6.1 (Jan 2026)</div>
 
         <div class="section-title">Обзор</div>
         <ul>
@@ -537,6 +537,14 @@
             <li><a href="#pages">Страницы</a></li>
             <li><a href="#environment">Environment</a></li>
             <li><a href="#deploy">Деплой</a></li>
+        </ul>
+
+        <div class="section-title">Updates Jan 2026</div>
+        <ul>
+            <li><a href="#test-branch">Test Branch</a></li>
+            <li><a href="#partner-cabinet">Partner Cabinet</a></li>
+            <li><a href="#edge-runtime">Edge Runtime</a></li>
+            <li><a href="#ci-cd">CI/CD Pipeline</a></li>
         </ul>
     </nav>
 
@@ -2395,6 +2403,229 @@ vercel env pull .env.local
 
 # Логи
 vercel logs --follow</code></pre>
+        </section>
+
+        <!-- ==================== JANUARY 2026 UPDATES ==================== -->
+
+        <!-- TEST BRANCH -->
+        <section id="test-branch">
+            <h2>Test Branch Updates (January 2026)</h2>
+            <p>Test ветка содержит <strong>66 изменённых файлов</strong> (+6,819/-450 строк). Основные фичи готовы к merge.</p>
+
+            <h3>Ключевые изменения</h3>
+            <table>
+                <thead>
+                    <tr><th>Фича</th><th>Статус</th><th>Описание</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Edge Runtime</td><td style="color: #4ADE80;">✅ Done</td><td>Миграция критических routes</td></tr>
+                    <tr><td>CI/CD Pipeline</td><td style="color: #4ADE80;">✅ Done</td><td>GitHub Actions + автотесты</td></tr>
+                    <tr><td>E2E Tests</td><td style="color: #4ADE80;">✅ Done</td><td>10+ Playwright test specs</td></tr>
+                    <tr><td>Partner Cabinet</td><td style="color: #4ADE80;">✅ Done</td><td>6 страниц для партнёров</td></tr>
+                    <tr><td>Telegram-only Auth</td><td style="color: #4ADE80;">✅ Done</td><td>Удалён Neon Auth</td></tr>
+                    <tr><td>Dynamic Packs</td><td style="color: #4ADE80;">✅ Done</td><td>Кастомные паки промптов</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Новые файлы документации</h3>
+            <ul>
+                <li><code>AGENTS.md</code> — Инструкции для AI coding agents (303 строки)</li>
+                <li><code>docs/ENV_VARIABLES.md</code> — Справочник env переменных (403 строки)</li>
+                <li><code>docs/PRESENTATION_PLAN.md</code> — План презентации с GTM стратегией</li>
+            </ul>
+
+            <h3>Последние коммиты</h3>
+            <pre><code>d7a9028 fix: fetch photos from server when opening ready avatar
+0a5141e fix: correct asset type from 'image' to 'PHOTO'
+45ec708 fix: add telegram/send-photos to vercel.json maxDuration
+ee3edd4 fix: add maxDuration to payment/upload/telegram routes
+f761428 fix: migrate critical user-facing routes to Edge runtime</code></pre>
+        </section>
+
+        <!-- PARTNER CABINET -->
+        <section id="partner-cabinet">
+            <h2>Partner Cabinet</h2>
+            <p>Полнофункциональный кабинет партнёра для управления реферальной программой. Партнёры получают <strong>50% комиссии</strong> (vs 10% для обычных пользователей).</p>
+
+            <h3>6 страниц Partner Cabinet</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📊 Dashboard</h4>
+                    <ul>
+                        <li>KPI карточки: баланс, доход, рефералов</li>
+                        <li>График доходов за 30 дней</li>
+                        <li>Последние начисления</li>
+                        <li>Quick actions</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>💰 Earnings</h4>
+                    <ul>
+                        <li>История транзакций с фильтрами</li>
+                        <li>Статус: pending/credited/cancelled</li>
+                        <li>Экспорт в CSV</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>👥 Referrals</h4>
+                    <ul>
+                        <li>Список приглашённых</li>
+                        <li>Конверсия и статистика</li>
+                        <li>Заработано по рефералу</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>💳 Withdrawals</h4>
+                    <ul>
+                        <li>Минимум: 5,000 ₽</li>
+                        <li>НДФЛ 13% автоматически</li>
+                        <li>Методы: Card, СБП</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>📦 Packs</h4>
+                    <ul>
+                        <li>Кастомные паки промптов</li>
+                        <li>Публичные/приватные</li>
+                        <li>Статистика использования</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>⚙️ Settings</h4>
+                    <ul>
+                        <li>Профиль и контакты</li>
+                        <li>Реквизиты для выплат</li>
+                        <li>Уведомления</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Partner API Endpoints</h3>
+            <table>
+                <thead>
+                    <tr><th>Endpoint</th><th>Метод</th><th>Описание</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>/api/partner/stats</code></td><td>GET</td><td>Статистика дашборда</td></tr>
+                    <tr><td><code>/api/partner/earnings</code></td><td>GET</td><td>История начислений</td></tr>
+                    <tr><td><code>/api/partner/apply</code></td><td>POST</td><td>Заявка на партнёрство</td></tr>
+                    <tr><td><code>/api/referral/withdraw</code></td><td>POST</td><td>Запрос на вывод</td></tr>
+                    <tr><td><code>/api/packs</code></td><td>CRUD</td><td>Управление паками</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Deferred Earnings Flow</h3>
+            <p>Защита от chargebacks: комиссия зачисляется ПОСЛЕ завершения генерации.</p>
+            <pre><code>Payment Succeeded → status: 'pending' (баланс не обновляется)
+                      ↓
+Generation Complete → status: 'credited' (баланс +)
+                      ↓ (если refund до генерации)
+Refund Before Gen → status: 'cancelled' (баланс 0)</code></pre>
+        </section>
+
+        <!-- EDGE RUNTIME -->
+        <section id="edge-runtime">
+            <h2>Edge Runtime Migration</h2>
+            <p>Критические user-facing routes мигрированы на Edge Runtime для улучшения времени ответа.</p>
+
+            <h3>Мигрированные routes</h3>
+            <table>
+                <thead>
+                    <tr><th>Route</th><th>maxDuration</th><th>Описание</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>/api/payment/create</code></td><td>30s</td><td>Создание платежа</td></tr>
+                    <tr><td><code>/api/payment/status</code></td><td>30s</td><td>Проверка статуса</td></tr>
+                    <tr><td><code>/api/upload</code></td><td>30s</td><td>Загрузка фото</td></tr>
+                    <tr><td><code>/api/telegram/send-photos</code></td><td>60s</td><td>Отправка в Telegram</td></tr>
+                </tbody>
+            </table>
+
+            <h3>vercel.json</h3>
+            <pre><code>{
+  "functions": {
+    "app/api/payment/**/*.ts": { "maxDuration": 30 },
+    "app/api/upload/**/*.ts": { "maxDuration": 30 },
+    "app/api/telegram/**/*.ts": { "maxDuration": 60 },
+    "app/api/jobs/process/route.ts": { "maxDuration": 60 },
+    "app/api/cron/poll-kie-tasks/route.ts": { "maxDuration": 55 }
+  }
+}</code></pre>
+
+            <h3>Преимущества</h3>
+            <ul>
+                <li>~50% быстрее cold starts</li>
+                <li>Меньше latency для пользователей</li>
+                <li>Автоматическое масштабирование</li>
+                <li>Глобальная дистрибуция</li>
+            </ul>
+        </section>
+
+        <!-- CI/CD PIPELINE -->
+        <section id="ci-cd">
+            <h2>CI/CD Pipeline</h2>
+            <p>GitHub Actions workflow для автоматического тестирования.</p>
+
+            <h3>Workflow</h3>
+            <pre><code># .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: [main, test]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - run: pnpm install && pnpm lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pnpm install && pnpm test
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pnpm install && npx playwright install
+      - run: pnpm test:e2e</code></pre>
+
+            <h3>E2E Test Specs</h3>
+            <table>
+                <thead>
+                    <tr><th>Spec</th><th>Описание</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>auth.spec.ts</code></td><td>Telegram authentication flow</td></tr>
+                    <tr><td><code>upload.spec.ts</code></td><td>Photo upload functionality</td></tr>
+                    <tr><td><code>payment.spec.ts</code></td><td>Payment flows (T-Bank, Stars)</td></tr>
+                    <tr><td><code>generation.spec.ts</code></td><td>AI generation status</td></tr>
+                    <tr><td><code>partner-cabinet.spec.ts</code></td><td>Partner dashboard</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Метрики</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">~75%</div>
+                    <div class="stat-label">Test Coverage</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">10+</div>
+                    <div class="stat-label">E2E Specs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">35</div>
+                    <div class="stat-label">API Routes</div>
+                </div>
+            </div>
         </section>
     </main>
 
