@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinGlass - User Styles Flow Mockups</title>
+  <style>
+    /* ========== CSS Variables (PinGlass Design System) ========== */
+    :root {
+      /* Core colors - Dark theme */
+      --background: #0a0a0b;
+      --foreground: #fafafa;
+      --card: #141416;
+      --card-foreground: #fafafa;
+      --muted: #1c1c1f;
+      --muted-foreground: #a1a1aa;
+      --border: #27272a;
+
+      /* Primary - Coral */
+      --primary: #FF6B6B;
+      --primary-foreground: #ffffff;
+      --primary-light: rgba(255, 107, 107, 0.1);
+
+      /* Accent colors */
+      --accent-purple: #8B5CF6;
+      --accent-amber: #F59E0B;
+      --accent-green: #10B981;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+
+      /* Spacing */
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-lg: 20px;
+    }
+
+    /* ========== Base Styles ========== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: var(--foreground);
+      line-height: 1.5;
+      padding: 40px 20px;
+    }
+
+    /* ========== Page Layout ========== */
+    .mockups-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header p {
+      color: var(--muted-foreground);
+      font-size: 1.1rem;
+    }
+
+    .mockups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 60px;
+      justify-items: center;
+    }
+
+    /* ========== Mockup Section ========== */
+    .mockup-section {
+      text-align: center;
+    }
+
+    .mockup-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--foreground);
+    }
+
+    .mockup-subtitle {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-bottom: 24px;
+    }
+
+    /* ========== Phone Frame ========== */
+    .phone-frame {
+      width: 375px;
+      height: 812px;
+      background: var(--background);
+      border-radius: 44px;
+      border: 3px solid #2a2a35;
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    }
+
+    /* Notch */
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 34px;
+      background: #000;
+      border-radius: 0 0 20px 20px;
+      z-index: 100;
+    }
+
+    /* Home indicator */
+    .phone-frame::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 134px;
+      height: 5px;
+      background: var(--foreground);
+      border-radius: 3px;
+      opacity: 0.3;
+      z-index: 100;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      padding: 54px 16px 40px;
+      overflow-y: auto;
+      background: var(--background);
+    }
+
+    /* ========== Component Styles ========== */
+
+    /* Header */
+    .view-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .view-header-text h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--foreground);
+    }
+
+    .view-header-text p {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-top: 2px;
+    }
+
+    .back-button {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: none;
+      color: var(--muted-foreground);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .back-button:hover {
+      background: var(--muted);
+      color: var(--foreground);
+    }
+
+    .refresh-button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: none;
+      color: var(--muted-foreground);
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    /* Pack Grid */
+    .pack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .pack-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .pack-card:hover {
+      border-color: rgba(255, 107, 107, 0.3);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Collage Preview */
+    .collage-preview {
+      aspect-ratio: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      position: relative;
+    }
+
+    .collage-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .collage-preview .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2) 50%, transparent);
+    }
+
+    /* Badges */
+    .badges {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 6px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .badge-featured {
+      background: rgba(245, 158, 11, 0.9);
+      color: white;
+    }
+
+    .badge-partner {
+      background: rgba(139, 92, 246, 0.9);
+      color: white;
+    }
+
+    .badge-popular {
+      background: var(--primary);
+      color: white;
+    }
+
+    .badge-success {
+      background: var(--accent-green);
+      color: white;
+    }
+
+    /* Pack Card Content */
+    .pack-card-content {
+      padding: 12px;
+    }
+
+    .pack-card-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .pack-card-title .emoji {
+      font-size: 1rem;
+    }
+
+    .pack-card-title h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--foreground);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pack-card-meta {
+      font-size: 11px;
+      color: var(--muted-foreground);
+    }
+
+    /* ========== Style Detail View ========== */
+    .detail-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .detail-header .title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .detail-header .emoji {
+      font-size: 1.75rem;
+    }
+
+    .detail-header h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    /* Masonry Collage */
+    .masonry-collage {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0 16px;
+      margin-bottom: 24px;
+    }
+
+    .collage-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--muted);
+      position: relative;
+    }
+
+    .collage-item:nth-child(1),
+    .collage-item:nth-child(4) {
+      aspect-ratio: 1.2/1;
+    }
+
+    .collage-item:nth-child(2),
+    .collage-item:nth-child(3) {
+      aspect-ratio: 1/1.2;
+    }
+
+    .collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .collage-item .gradient-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
+    }
+
+    /* Stats Row */
+    .stats-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    .stat-item strong {
+      color: var(--foreground);
+    }
+
+    .stat-item svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Description */
+    .pack-description {
+      text-align: center;
+      color: var(--muted-foreground);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      padding: 0 8px;
+    }
+
+    /* Fixed Bottom CTA */
+    .fixed-cta {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-premium {
+      width: 100%;
+      padding: 16px 24px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary), #FF8888);
+      color: white;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    .btn-premium:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
+
+    /* ========== Tier Select View ========== */
+
+    /* Selected Style Block */
+    .selected-style-block {
+      padding: 12px;
+      background: rgba(28, 28, 31, 0.3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+    }
+
+    .selected-style-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .style-preview {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .style-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .style-preview .emoji-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .style-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .style-info .label {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+    }
+
+    .style-info .name {
+      font-weight: 500;
+      color: var(--foreground);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .change-style-btn {
+      font-size: 0.875rem;
+      color: var(--primary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .change-style-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Tier Cards */
+    .tier-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 100px;
+    }
+
+    .tier-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .tier-card:hover {
+      border-color: rgba(161, 161, 170, 0.3);
+      background: rgba(28, 28, 31, 0.3);
+    }
+
+    .tier-card.selected {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(139, 92, 246, 0.05));
+      box-shadow: var(--shadow-lg), 0 0 0 2px rgba(255, 107, 107, 0.2);
+    }
+
+    .tier-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .tier-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--muted);
+      color: var(--muted-foreground);
+      font-size: 1.5rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+
+    .tier-card.selected .tier-icon {
+      background: linear-gradient(135deg, var(--primary), rgba(255, 107, 107, 0.8));
+      color: white;
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+
+    .tier-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tier-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .tier-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    .tier-description {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    .tier-price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .price-discount-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .original-price {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      text-decoration: line-through;
+    }
+
+    .discount-badge {
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--accent-green);
+      color: white;
+      font-weight: 600;
+    }
+
+    .current-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--foreground);
+    }
+
+    .current-price.discounted {
+      color: #10B981;
+    }
+
+    .price-per-photo {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+    }
+
+    .tier-selected-indicator {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 107, 107, 0.2);
+    }
+
+    /* Button Gradient */
+    .btn-gradient {
+      width: 100%;
+      padding: 18px 24px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary), #FF8888);
+      color: white;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    /* SVG Icons */
+    .icon {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-sm {
+      width: 12px;
+      height: 12px;
+    }
+
+    .icon-lg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Placeholder images */
+    .placeholder-img {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--muted), rgba(28, 28, 31, 0.8));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .placeholder-img.portrait-1 { background: linear-gradient(135deg, #2d1f3d, #1a1a2e); }
+    .placeholder-img.portrait-2 { background: linear-gradient(135deg, #1f2d3d, #1a1a2e); }
+    .placeholder-img.portrait-3 { background: linear-gradient(135deg, #3d2d1f, #1a1a2e); }
+    .placeholder-img.portrait-4 { background: linear-gradient(135deg, #1f3d2d, #1a1a2e); }
+    .placeholder-img.lifestyle-1 { background: linear-gradient(135deg, #3d1f2d, #1a1a2e); }
+    .placeholder-img.lifestyle-2 { background: linear-gradient(135deg, #2d3d1f, #1a1a2e); }
+    .placeholder-img.creative-1 { background: linear-gradient(135deg, #1f3d3d, #1a1a2e); }
+    .placeholder-img.creative-2 { background: linear-gradient(135deg, #3d3d1f, #1a1a2e); }
+
+    /* Portrait silhouette for placeholders */
+    .silhouette {
+      width: 60%;
+      height: 70%;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50% 50% 45% 45%;
+      position: relative;
+    }
+
+    .silhouette::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: 10%;
+      right: 10%;
+      height: 40%;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 30% 30% 0 0;
+    }
+
+    /* Section Divider */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 40px 0;
+    }
+
+    /* Notes Section */
+    .notes {
+      margin-top: 60px;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .notes h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--foreground);
+    }
+
+    .notes ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .notes li {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .notes li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+
+    .notes code {
+      background: var(--muted);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 0.8125rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="mockups-container">
+    <!-- Page Header -->
+    <header class="page-header">
+      <h1>PinGlass - User Styles Flow</h1>
+      <p>Mobile-first mockups for style selection and tier purchase flow</p>
+    </header>
+
+    <!-- Mockups Grid -->
+    <div class="mockups-grid">
+
+      <!-- ============ 1. Styles List View ============ -->
+      <div class="mockup-section">
+        <h2 class="mockup-title">1. Styles List View</h2>
+        <p class="mockup-subtitle">styles-list-view.tsx - Pack selection grid</p>
+
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <!-- Header -->
+            <div class="view-header">
+              <div class="view-header-text">
+                <h1>Стили</h1>
+                <p>Выберите стиль для генерации</p>
+              </div>
+              <button class="refresh-button" aria-label="Обновить список">
+                <svg class="icon-lg" viewBox="0 0 24 24">
+                  <path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/>
+                  <path d="M21 3v5h-5"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Pack Grid (2 columns) -->
+            <div class="pack-grid">
+
+              <!-- Pack 1: PinGlass (Default) -->
+              <div class="pack-card">
+                <div class="collage-preview">
+                  <div class="placeholder-img portrait-1"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-2"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-3"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-4"><div class="silhouette"></div></div>
+                  <div class="overlay"></div>
+                  <div class="badges">
+                    <span class="badge badge-featured">
+                      <svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                      </svg>
+                      Featured
+                    </span>
+                  </div>
+                </div>
+                <div class="pack-card-content">
+                  <div class="pack-card-title">
+                    <span class="emoji">&#127872;</span>
+                    <h3>PinGlass</h3>
+                  </div>
+                  <p class="pack-card-meta">23 стиля &bull; 1.2K генераций</p>
+                </div>
+              </div>
+
+              <!-- Pack 2: Professional -->
+              <div class="pack-card">
+                <div class="collage-preview">
+                  <div class="placeholder-img portrait-2"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-1"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-4"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-3"><div class="silhouette"></div></div>
+                  <div class="overlay"></div>
+                </div>
+                <div class="pack-card-content">
+                  <div class="pack-card-title">
+                    <span class="emoji">&#128188;</span>
+                    <h3>Professional</h3>
+                  </div>
+                  <p class="pack-card-meta">15 стилей &bull; 856 генераций</p>
+                </div>
+              </div>
+
+              <!-- Pack 3: Lifestyle -->
+              <div class="pack-card">
+                <div class="collage-preview">
+                  <div class="placeholder-img lifestyle-1"><div class="silhouette"></div></div>
+                  <div class="placeholder-img lifestyle-2"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-1"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-2"><div class="silhouette"></div></div>
+                  <div class="overlay"></div>
+                </div>
+                <div class="pack-card-content">
+                  <div class="pack-card-title">
+                    <span class="emoji">&#127796;</span>
+                    <h3>Lifestyle</h3>
+                  </div>
+                  <p class="pack-card-meta">18 стилей &bull; 743 генерации</p>
+                </div>
+              </div>
+
+              <!-- Pack 4: Creative -->
+              <div class="pack-card">
+                <div class="collage-preview">
+                  <div class="placeholder-img creative-1"><div class="silhouette"></div></div>
+                  <div class="placeholder-img creative-2"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-3"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-4"><div class="silhouette"></div></div>
+                  <div class="overlay"></div>
+                </div>
+                <div class="pack-card-content">
+                  <div class="pack-card-title">
+                    <span class="emoji">&#127912;</span>
+                    <h3>Creative</h3>
+                  </div>
+                  <p class="pack-card-meta">20 стилей &bull; 512 генераций</p>
+                </div>
+              </div>
+
+              <!-- Pack 5: Dating Profile -->
+              <div class="pack-card">
+                <div class="collage-preview">
+                  <div class="placeholder-img portrait-1"><div class="silhouette"></div></div>
+                  <div class="placeholder-img lifestyle-1"><div class="silhouette"></div></div>
+                  <div class="placeholder-img lifestyle-2"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-2"><div class="silhouette"></div></div>
+                  <div class="overlay"></div>
+                  <div class="badges">
+                    <span class="badge badge-partner">
+                      <svg class="icon-sm" viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                      Partner
+                    </span>
+                  </div>
+                </div>
+                <div class="pack-card-content">
+                  <div class="pack-card-title">
+                    <span class="emoji">&#128150;</span>
+                    <h3>Dating Profile</h3>
+                  </div>
+                  <p class="pack-card-meta">12 стилей &bull; 324 генерации</p>
+                </div>
+              </div>
+
+              <!-- Pack 6: Bold & Dramatic -->
+              <div class="pack-card">
+                <div class="collage-preview">
+                  <div class="placeholder-img creative-2"><div class="silhouette"></div></div>
+                  <div class="placeholder-img creative-1"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-4"><div class="silhouette"></div></div>
+                  <div class="placeholder-img portrait-1"><div class="silhouette"></div></div>
+                  <div class="overlay"></div>
+                </div>
+                <div class="pack-card-content">
+                  <div class="pack-card-title">
+                    <span class="emoji">&#128293;</span>
+                    <h3>Bold & Dramatic</h3>
+                  </div>
+                  <p class="pack-card-meta">10 стилей &bull; 201 генерация</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2. Style Detail View ============ -->
+      <div class="mockup-section">
+        <h2 class="mockup-title">2. Style Detail View</h2>
+        <p class="mockup-subtitle">style-detail-view.tsx - Pack details with masonry collage</p>
+
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <!-- Header with back button -->
+            <div class="detail-header">
+              <button class="back-button" aria-label="Back">
+                <svg class="icon-lg" viewBox="0 0 24 24">
+                  <path d="M19 12H5"/>
+                  <path d="M12 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              <div class="title-group">
+                <span class="emoji">&#127872;</span>
+                <h1>PinGlass</h1>
+              </div>
+            </div>
+
+            <!-- Masonry 2x2 Collage -->
+            <div class="masonry-collage">
+              <div class="collage-item" style="aspect-ratio: 1.2/1;">
+                <div class="placeholder-img portrait-1"><div class="silhouette"></div></div>
+                <div class="gradient-overlay"></div>
+              </div>
+              <div class="collage-item" style="aspect-ratio: 1/1.2;">
+                <div class="placeholder-img portrait-2"><div class="silhouette"></div></div>
+                <div class="gradient-overlay"></div>
+              </div>
+              <div class="collage-item" style="aspect-ratio: 1/1.2;">
+                <div class="placeholder-img portrait-3"><div class="silhouette"></div></div>
+                <div class="gradient-overlay"></div>
+              </div>
+              <div class="collage-item" style="aspect-ratio: 1.2/1;">
+                <div class="placeholder-img portrait-4"><div class="silhouette"></div></div>
+                <div class="gradient-overlay"></div>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p class="pack-description">
+              Классический стиль PinGlass с мягким розовым оттенком. Идеально подходит для аватаров в социальных сетях и профессиональных профилей.
+            </p>
+
+            <!-- Stats Row -->
+            <div class="stats-row">
+              <div class="stat-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <circle cx="9" cy="9" r="2"/>
+                  <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                </svg>
+                <span><strong>23</strong> prompts</span>
+              </div>
+              <div class="stat-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span><strong>1,247</strong> uses</span>
+              </div>
+            </div>
+
+            <!-- Fixed Bottom CTA -->
+            <div class="fixed-cta">
+              <button class="btn-premium">
+                <svg class="icon-lg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                  <path d="M12 3l1.5 4.5h4.5l-3.5 2.5 1.5 4.5-4-3-4 3 1.5-4.5-3.5-2.5h4.5z"/>
+                </svg>
+                Select this style
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 3. Tier Select View ============ -->
+      <div class="mockup-section">
+        <h2 class="mockup-title">3. Tier Select View</h2>
+        <p class="mockup-subtitle">tier-select-view.tsx - Package selection with style block</p>
+
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <!-- Header -->
+            <div class="view-header">
+              <button class="back-button" aria-label="Назад">
+                <svg class="icon-lg" viewBox="0 0 24 24">
+                  <path d="M19 12H5"/>
+                  <path d="M12 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              <div class="view-header-text">
+                <h1 style="font-size: 1.125rem;">Выберите пакет</h1>
+              </div>
+            </div>
+
+            <!-- Selected Style Block (NEW!) -->
+            <div class="selected-style-block">
+              <div class="selected-style-content">
+                <div class="style-preview">
+                  <div class="placeholder-img portrait-1"><div class="silhouette"></div></div>
+                </div>
+                <div class="style-info">
+                  <p class="label">Стиль</p>
+                  <p class="name">
+                    <span>&#127872;</span>
+                    PinGlass
+                  </p>
+                </div>
+                <button class="change-style-btn">Изменить</button>
+              </div>
+            </div>
+
+            <!-- Tier Cards -->
+            <div class="tier-cards">
+
+              <!-- Starter Tier -->
+              <div class="tier-card">
+                <div class="tier-card-header">
+                  <div class="tier-icon">7</div>
+                  <div class="tier-info">
+                    <div class="tier-title-row">
+                      <span class="tier-title">7 фотографий</span>
+                    </div>
+                    <p class="tier-description">Попробовать AI-фото</p>
+                  </div>
+                  <div class="tier-price">
+                    <div class="current-price">299 &#8381;</div>
+                    <div class="price-per-photo">43 &#8381;/фото</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Standard Tier (Popular) -->
+              <div class="tier-card selected">
+                <div class="tier-card-header">
+                  <div class="tier-icon">15</div>
+                  <div class="tier-info">
+                    <div class="tier-title-row">
+                      <span class="tier-title">15 фотографий</span>
+                      <span class="badge badge-popular">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                        Хит
+                      </span>
+                    </div>
+                    <p class="tier-description">Оптимальный выбор</p>
+                  </div>
+                  <div class="tier-price">
+                    <div class="current-price">499 &#8381;</div>
+                    <div class="price-per-photo">33 &#8381;/фото</div>
+                  </div>
+                </div>
+                <div class="tier-selected-indicator">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  Выбрано
+                </div>
+              </div>
+
+              <!-- Premium Tier -->
+              <div class="tier-card">
+                <div class="tier-card-header">
+                  <div class="tier-icon">23</div>
+                  <div class="tier-info">
+                    <div class="tier-title-row">
+                      <span class="tier-title">23 фотографии</span>
+                    </div>
+                    <p class="tier-description">Максимум возможностей</p>
+                  </div>
+                  <div class="tier-price">
+                    <div class="price-discount-row">
+                      <span class="original-price">799 &#8381;</span>
+                      <span class="discount-badge">-12%</span>
+                    </div>
+                    <div class="current-price discounted">699 &#8381;</div>
+                    <div class="price-per-photo">30 &#8381;/фото</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Fixed Bottom CTA -->
+            <div class="fixed-cta">
+              <button class="btn-gradient">
+                <svg class="icon-lg" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                  <path d="M12 3l1.5 4.5h4.5l-3.5 2.5 1.5 4.5-4-3-4 3 1.5-4.5-3.5-2.5h4.5z"/>
+                </svg>
+                Оплатить и получить 15 фото
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Notes Section -->
+    <div class="notes">
+      <h2>Implementation Notes</h2>
+      <ul>
+        <li>
+          <strong>StylesListView</strong>: Uses <code>usePacks()</code> hook for data fetching. 2-column grid with <code>PackCard</code> components featuring 2x2 collage previews.
+        </li>
+        <li>
+          <strong>StyleDetailView</strong>: Displays pack details with floating masonry collage animation (staggered delays). Fixed bottom CTA with <code>btn-premium</code> class.
+        </li>
+        <li>
+          <strong>TierSelectView</strong>: NEW Selected Style Block at top shows <code>activePack</code> from <code>useActivePack()</code> hook. "Изменить" button triggers <code>onChangeStyle</code> callback.
+        </li>
+        <li>
+          <strong>Pricing Tiers</strong>: Dynamic from <code>pricingTiers</code> prop. Supports discount badges with original price strikethrough.
+        </li>
+        <li>
+          <strong>Accessibility</strong>: Radio group with keyboard navigation (Arrow keys, Home/End). ARIA roles and labels on all interactive elements.
+        </li>
+        <li>
+          <strong>Badges</strong>: Featured (amber), Partner (purple), Popular (coral), Success/Discount (green).
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

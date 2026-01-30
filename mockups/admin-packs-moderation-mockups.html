@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinGlass Admin - Pack Moderation Mockups</title>
+  <style>
+    /* Reset & Base - Dark Theme */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f0f;
+      color: #e5e5e5;
+      line-height: 1.5;
+    }
+
+    /* Color Palette */
+    :root {
+      --coral: #FF6B6B;
+      --coral-dark: #e55a5a;
+      --coral-light: #ff8585;
+      --bg-primary: #0f0f0f;
+      --bg-secondary: #1a1a1a;
+      --bg-tertiary: #252525;
+      --bg-card: #1e1e1e;
+      --border: #2a2a2a;
+      --border-light: #3a3a3a;
+      --text-primary: #e5e5e5;
+      --text-secondary: #a0a0a0;
+      --text-muted: #6b6b6b;
+      --green: #22c55e;
+      --green-bg: rgba(34, 197, 94, 0.15);
+      --yellow: #eab308;
+      --yellow-bg: rgba(234, 179, 8, 0.15);
+      --red: #ef4444;
+      --red-bg: rgba(239, 68, 68, 0.15);
+      --blue: #3b82f6;
+      --blue-bg: rgba(59, 130, 246, 0.15);
+    }
+
+    /* Admin Container */
+    .admin-container { max-width: 1400px; margin: 0 auto; }
+    .admin-section {
+      margin-bottom: 48px;
+      padding: 32px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    .admin-section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Header */
+    .admin-header {
+      background: rgba(30, 30, 30, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .admin-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .admin-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .admin-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 107, 107, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .admin-logo-text h1 { font-size: 18px; font-weight: 600; color: var(--text-primary); }
+    .admin-logo-text p { font-size: 12px; color: var(--text-secondary); }
+
+    /* Navigation */
+    .admin-nav {
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 73px;
+      z-index: 40;
+    }
+    .admin-nav-inner {
+      display: flex;
+      gap: 4px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      overflow-x: auto;
+    }
+    .admin-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 12px 12px 0 0;
+      position: relative;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .admin-nav-item:hover { color: var(--text-primary); background: var(--bg-tertiary); }
+    .admin-nav-item.active { color: var(--text-primary); background: var(--bg-tertiary); }
+    .admin-nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--coral);
+    }
+
+    /* Sub-tabs (inside section) */
+    .admin-subtabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .admin-subtab {
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .admin-subtab:hover { color: var(--text-primary); }
+    .admin-subtab.active {
+      color: var(--coral);
+      border-bottom-color: var(--coral);
+    }
+
+    /* Stats Grid */
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .admin-stat-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .admin-stat-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    .admin-stat-value { font-size: 24px; font-weight: 700; color: var(--text-primary); }
+    .admin-stat-value.coral { color: var(--coral); }
+    .admin-stat-value.green { color: var(--green); }
+    .admin-stat-value.yellow { color: var(--yellow); }
+    .admin-stat-value.red { color: var(--red); }
+
+    /* Tables */
+    .admin-table-wrapper {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .admin-table th {
+      background: var(--bg-tertiary);
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+    }
+    .admin-table td {
+      padding: 14px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .admin-table tr:hover td { background: var(--bg-tertiary); }
+    .admin-table tr:last-child td { border-bottom: none; }
+
+    /* Badges */
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .admin-badge.green { background: var(--green-bg); color: var(--green); }
+    .admin-badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .admin-badge.red { background: var(--red-bg); color: var(--red); }
+    .admin-badge.blue { background: var(--blue-bg); color: var(--blue); }
+    .admin-badge.gray { background: var(--bg-tertiary); color: var(--text-secondary); }
+    .admin-badge.coral { background: rgba(255, 107, 107, 0.15); color: var(--coral); }
+
+    /* Buttons */
+    .admin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .admin-btn.primary { background: var(--coral); color: white; }
+    .admin-btn.primary:hover { background: var(--coral-dark); }
+    .admin-btn.secondary { background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border); }
+    .admin-btn.secondary:hover { background: var(--border-light); }
+    .admin-btn.danger { background: var(--red-bg); color: var(--red); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .admin-btn.danger:hover { background: rgba(239, 68, 68, 0.25); }
+    .admin-btn.success { background: var(--green-bg); color: var(--green); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .admin-btn.success:hover { background: rgba(34, 197, 94, 0.25); }
+    .admin-btn.icon-only { padding: 10px; }
+    .admin-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Forms */
+    .admin-input {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      transition: all 0.2s;
+      width: 100%;
+    }
+    .admin-input:focus {
+      outline: none;
+      border-color: var(--coral);
+      box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+    }
+    .admin-input::placeholder { color: var(--text-muted); }
+    .admin-select {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+    .admin-textarea {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      resize: vertical;
+      min-height: 100px;
+      width: 100%;
+    }
+    .admin-textarea:focus {
+      outline: none;
+      border-color: var(--coral);
+      box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+    }
+    .admin-textarea::placeholder { color: var(--text-muted); }
+
+    /* Filters */
+    .admin-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    /* Modal */
+    .admin-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .admin-modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 800px;
+      width: 95%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .admin-modal-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+    .admin-modal-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    /* Pack Preview Collage */
+    .pack-collage {
+      width: 80px;
+      height: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 2px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--border);
+    }
+    .pack-collage-item {
+      background: var(--bg-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .pack-collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Pack Preview Large */
+    .pack-preview-large {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .pack-preview-item {
+      aspect-ratio: 1;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* Prompt List */
+    .prompt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 300px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+    .prompt-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg-tertiary);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .prompt-item-preview {
+      width: 60px;
+      height: 60px;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 10px;
+    }
+    .prompt-item-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .prompt-item-index {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--coral);
+      margin-bottom: 4px;
+    }
+    .prompt-item-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    /* Pack Info Grid */
+    .pack-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .pack-info-item {
+      padding: 12px;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+    }
+    .pack-info-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .pack-info-value {
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Rejection Reasons Dropdown */
+    .rejection-reasons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .rejection-reason-chip {
+      padding: 6px 12px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .rejection-reason-chip:hover {
+      border-color: var(--coral);
+      color: var(--coral);
+    }
+    .rejection-reason-chip.selected {
+      background: rgba(255, 107, 107, 0.15);
+      border-color: var(--coral);
+      color: var(--coral);
+    }
+
+    /* Settings Card */
+    .settings-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .settings-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .settings-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .settings-value {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Commission Input */
+    .commission-input-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .commission-input {
+      width: 80px;
+      padding: 8px 12px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .commission-unit {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Override Table */
+    .override-table {
+      margin-top: 16px;
+    }
+    .override-row {
+      display: grid;
+      grid-template-columns: 1fr 100px 120px 80px;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .override-row:first-child {
+      background: transparent;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Pagination */
+    .admin-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+    .admin-pagination-info { font-size: 14px; color: var(--text-secondary); }
+    .admin-pagination-buttons { display: flex; gap: 8px; }
+    .admin-pagination-btn {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .admin-pagination-btn:hover { background: var(--border-light); }
+    .admin-pagination-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Demo Label */
+    .admin-demo-label {
+      background: linear-gradient(135deg, var(--coral), #ff8585);
+      color: white;
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Utilities */
+    .mb-4 { margin-bottom: 16px; }
+    .mb-6 { margin-bottom: 24px; }
+    .mt-4 { margin-top: 16px; }
+    .mt-6 { margin-top: 24px; }
+    .flex-1 { flex: 1; }
+    .text-right { text-align: right; }
+    .text-center { text-align: center; }
+    .font-mono { font-family: ui-monospace, monospace; }
+    .text-sm { font-size: 14px; }
+    .text-xs { font-size: 12px; }
+    .text-muted { color: var(--text-muted); }
+    .text-secondary { color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+
+<!-- Demo Label -->
+<div class="admin-demo-label">
+  HTML/CSS Mockup - PinGlass Admin Panel: Pack Moderation System (Dark Theme)
+</div>
+
+<!-- ============================================ -->
+<!-- HEADER -->
+<!-- ============================================ -->
+<header class="admin-header">
+  <div class="admin-header-inner">
+    <div class="admin-logo">
+      <div class="admin-logo-icon">&#128737;</div>
+      <div class="admin-logo-text">
+        <h1>PinGlass Admin</h1>
+        <p>Pack Moderation</p>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <span class="admin-badge coral">3 Pending</span>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 32px; height: 32px; background: var(--bg-tertiary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--coral);">A</div>
+        <span class="text-sm">Admin</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================ -->
+<!-- NAVIGATION -->
+<!-- ============================================ -->
+<nav class="admin-nav">
+  <div class="admin-nav-inner">
+    <a href="#" class="admin-nav-item">&#128202; Dashboard</a>
+    <a href="#" class="admin-nav-item">&#128101; Users</a>
+    <a href="#" class="admin-nav-item">&#128176; Payments</a>
+    <a href="#" class="admin-nav-item">&#9889; Generations</a>
+    <a href="#" class="admin-nav-item">&#10024; Prompts</a>
+    <a href="#" class="admin-nav-item">&#127873; Referrals</a>
+    <a href="#" class="admin-nav-item active">&#128081; Partners</a>
+    <a href="#" class="admin-nav-item">&#128172; Telegram</a>
+    <a href="#settings" class="admin-nav-item">&#9881; Settings</a>
+  </div>
+</nav>
+
+<main style="max-width: 1400px; margin: 0 auto; padding: 32px 24px;">
+
+<!-- ============================================ -->
+<!-- SECTION 1: ADMIN PACK MODERATION VIEW -->
+<!-- ============================================ -->
+<section id="moderation" class="admin-section">
+  <h2 class="admin-section-title">1. Admin Pack Moderation View</h2>
+
+  <!-- Sub-tabs: Partners | Pack Moderation -->
+  <div class="admin-subtabs">
+    <div class="admin-subtab">Partners</div>
+    <div class="admin-subtab active">Pack Moderation</div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="admin-stats-grid">
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">&#128230; Total Packs</div>
+      <div class="admin-stat-value">47</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">&#9203; Pending Review</div>
+      <div class="admin-stat-value yellow">3</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">&#9989; Approved</div>
+      <div class="admin-stat-value green">38</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-label">&#10060; Rejected</div>
+      <div class="admin-stat-value red">6</div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="admin-filters">
+    <select class="admin-select">
+      <option value="">All Statuses</option>
+      <option value="pending">Pending</option>
+      <option value="approved">Approved</option>
+      <option value="rejected">Rejected</option>
+    </select>
+    <input type="text" class="admin-input" placeholder="Search by pack name or partner..." style="max-width: 280px;">
+    <div class="flex-1"></div>
+    <button class="admin-btn secondary">&#128260; Refresh</button>
+  </div>
+
+  <!-- Pack Moderation Table -->
+  <div class="admin-table-wrapper">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Preview</th>
+          <th>Pack Name</th>
+          <th>Partner Name</th>
+          <th>Prompts</th>
+          <th>Submitted At</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Pending Pack 1 -->
+        <tr>
+          <td>
+            <div class="pack-collage">
+              <div class="pack-collage-item">1</div>
+              <div class="pack-collage-item">2</div>
+              <div class="pack-collage-item">3</div>
+              <div class="pack-collage-item">4</div>
+            </div>
+          </td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">&#127752;</span>
+              <div>
+                <div style="font-weight: 500;">Fantasy Dreams</div>
+                <div class="text-xs text-muted">Magical fairy tale style portraits</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div style="font-size: 14px;">Anna Creative</div>
+            <div class="font-mono text-xs text-muted">@annacreative</div>
+          </td>
+          <td class="text-center">12</td>
+          <td class="text-muted text-sm">Jan 28, 2026 14:32</td>
+          <td><span class="admin-badge yellow">&#9203; Pending</span></td>
+          <td>
+            <button class="admin-btn primary">Review</button>
+          </td>
+        </tr>
+        <!-- Pending Pack 2 -->
+        <tr>
+          <td>
+            <div class="pack-collage">
+              <div class="pack-collage-item">1</div>
+              <div class="pack-collage-item">2</div>
+              <div class="pack-collage-item">3</div>
+              <div class="pack-collage-item">4</div>
+            </div>
+          </td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">&#128156;</span>
+              <div>
+                <div style="font-weight: 500;">Romantic Vibes</div>
+                <div class="text-xs text-muted">Soft pink aesthetic portraits</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div style="font-size: 14px;">Maria Photo</div>
+            <div class="font-mono text-xs text-muted">@mariaphoto</div>
+          </td>
+          <td class="text-center">8</td>
+          <td class="text-muted text-sm">Jan 27, 2026 09:15</td>
+          <td><span class="admin-badge yellow">&#9203; Pending</span></td>
+          <td>
+            <button class="admin-btn primary">Review</button>
+          </td>
+        </tr>
+        <!-- Pending Pack 3 -->
+        <tr>
+          <td>
+            <div class="pack-collage">
+              <div class="pack-collage-item">1</div>
+              <div class="pack-collage-item">2</div>
+              <div class="pack-collage-item">3</div>
+              <div class="pack-collage-item">4</div>
+            </div>
+          </td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">&#128293;</span>
+              <div>
+                <div style="font-weight: 500;">Urban Street</div>
+                <div class="text-xs text-muted">Gritty urban photography style</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div style="font-size: 14px;">Alex Urban</div>
+            <div class="font-mono text-xs text-muted">@alexurban</div>
+          </td>
+          <td class="text-center">15</td>
+          <td class="text-muted text-sm">Jan 26, 2026 18:45</td>
+          <td><span class="admin-badge yellow">&#9203; Pending</span></td>
+          <td>
+            <button class="admin-btn primary">Review</button>
+          </td>
+        </tr>
+        <!-- Approved Pack -->
+        <tr>
+          <td>
+            <div class="pack-collage">
+              <div class="pack-collage-item">1</div>
+              <div class="pack-collage-item">2</div>
+              <div class="pack-collage-item">3</div>
+              <div class="pack-collage-item">4</div>
+            </div>
+          </td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">&#127774;</span>
+              <div>
+                <div style="font-weight: 500;">Golden Hour</div>
+                <div class="text-xs text-muted">Warm sunset lighting portraits</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div style="font-size: 14px;">Sarah Sunset</div>
+            <div class="font-mono text-xs text-muted">@sarahsunset</div>
+          </td>
+          <td class="text-center">10</td>
+          <td class="text-muted text-sm">Jan 20, 2026 11:22</td>
+          <td><span class="admin-badge green">&#9989; Approved</span></td>
+          <td>
+            <button class="admin-btn secondary icon-only" title="View">&#128065;</button>
+          </td>
+        </tr>
+        <!-- Rejected Pack -->
+        <tr>
+          <td>
+            <div class="pack-collage">
+              <div class="pack-collage-item">1</div>
+              <div class="pack-collage-item">2</div>
+              <div class="pack-collage-item">3</div>
+              <div class="pack-collage-item">4</div>
+            </div>
+          </td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">&#128167;</span>
+              <div>
+                <div style="font-weight: 500;">Dark Mood</div>
+                <div class="text-xs text-muted">Moody dark aesthetic</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div style="font-size: 14px;">Mike Dark</div>
+            <div class="font-mono text-xs text-muted">@mikedark</div>
+          </td>
+          <td class="text-center">6</td>
+          <td class="text-muted text-sm">Jan 18, 2026 16:08</td>
+          <td><span class="admin-badge red">&#10060; Rejected</span></td>
+          <td>
+            <button class="admin-btn secondary icon-only" title="View">&#128065;</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="admin-pagination">
+    <div class="admin-pagination-info">Showing 1-5 of 47 packs</div>
+    <div class="admin-pagination-buttons">
+      <button class="admin-pagination-btn" disabled>&#8592; Prev</button>
+      <button class="admin-pagination-btn">Next &#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 2: PACK REVIEW MODAL -->
+<!-- ============================================ -->
+<section id="review-modal" class="admin-section">
+  <h2 class="admin-section-title">2. Pack Review Modal</h2>
+
+  <div style="padding: 20px; background: var(--bg-secondary); border-radius: 12px;">
+    <p class="text-sm text-muted mb-4">Modal opens when clicking "Review" button on a pending pack</p>
+
+    <!-- Modal Preview -->
+    <div class="admin-modal" style="position: relative; margin: 0; max-width: 100%;">
+      <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px;">
+        <div>
+          <h3 class="admin-modal-title" style="margin-bottom: 4px;">Review Pack: Fantasy Dreams</h3>
+          <p class="admin-modal-subtitle" style="margin-bottom: 0;">Submitted by <strong>Anna Creative</strong> (@annacreative) on Jan 28, 2026</p>
+        </div>
+        <span class="admin-badge yellow">&#9203; Pending Review</span>
+      </div>
+
+      <!-- Pack Preview Images (Large) -->
+      <div style="margin-bottom: 24px;">
+        <h4 style="font-size: 14px; font-weight: 600; color: var(--text-secondary); margin-bottom: 12px;">Pack Preview Images</h4>
+        <div class="pack-preview-large">
+          <div class="pack-preview-item">Preview 1</div>
+          <div class="pack-preview-item">Preview 2</div>
+          <div class="pack-preview-item">Preview 3</div>
+          <div class="pack-preview-item">Preview 4</div>
+        </div>
+      </div>
+
+      <!-- Pack Info Grid -->
+      <div class="pack-info-grid">
+        <div class="pack-info-item">
+          <div class="pack-info-label">Pack Name</div>
+          <div class="pack-info-value">&#127752; Fantasy Dreams</div>
+        </div>
+        <div class="pack-info-item">
+          <div class="pack-info-label">Emoji</div>
+          <div class="pack-info-value" style="font-size: 24px;">&#127752;</div>
+        </div>
+        <div class="pack-info-item" style="grid-column: span 2;">
+          <div class="pack-info-label">Description</div>
+          <div class="pack-info-value">Magical fairy tale style portraits with ethereal lighting, fantasy backgrounds, and dreamy color grading. Perfect for creating whimsical and enchanting avatar photos.</div>
+        </div>
+        <div class="pack-info-item">
+          <div class="pack-info-label">Partner</div>
+          <div class="pack-info-value">Anna Creative (@annacreative)</div>
+        </div>
+        <div class="pack-info-item">
+          <div class="pack-info-label">Telegram ID</div>
+          <div class="pack-info-value font-mono">987654321</div>
+        </div>
+      </div>
+
+      <!-- Prompts List -->
+      <div style="margin-bottom: 24px;">
+        <h4 style="font-size: 14px; font-weight: 600; color: var(--text-secondary); margin-bottom: 12px;">Prompts (12 total)</h4>
+        <div class="prompt-list">
+          <div class="prompt-item">
+            <div class="prompt-item-preview">Img 1</div>
+            <div class="prompt-item-content">
+              <div class="prompt-item-index">Prompt #1</div>
+              <div class="prompt-item-text">Ethereal fairy portrait of {subject} in an enchanted forest, soft golden light filtering through magical trees, butterfly wings, dreamy bokeh background, fantasy photography style</div>
+            </div>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-item-preview">Img 2</div>
+            <div class="prompt-item-content">
+              <div class="prompt-item-index">Prompt #2</div>
+              <div class="prompt-item-text">Mystical princess portrait of {subject} in a crystal palace, iridescent lighting, flowing magical dress, crown of stars, fantasy royal aesthetic</div>
+            </div>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-item-preview">Img 3</div>
+            <div class="prompt-item-content">
+              <div class="prompt-item-index">Prompt #3</div>
+              <div class="prompt-item-text">Magical woodland creature portrait of {subject}, surrounded by glowing fireflies, moonlit forest clearing, whimsical fairy tale atmosphere</div>
+            </div>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-item-preview">Img 4</div>
+            <div class="prompt-item-content">
+              <div class="prompt-item-index">Prompt #4</div>
+              <div class="prompt-item-text">Enchanted garden portrait of {subject} among blooming magical flowers, pastel color palette, soft diffused lighting, fantasy botanical setting</div>
+            </div>
+          </div>
+          <div class="prompt-item">
+            <div class="prompt-item-preview">Img 5</div>
+            <div class="prompt-item-content">
+              <div class="prompt-item-index">Prompt #5</div>
+              <div class="prompt-item-text">Celestial portrait of {subject} floating among stars and galaxies, cosmic background, ethereal glow, fantasy astral photography style</div>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-muted mt-4">+ 7 more prompts (scroll to view all)</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; gap: 12px; padding-top: 20px; border-top: 1px solid var(--border);">
+        <button class="admin-btn success" style="flex: 1;">
+          &#9989; Approve Pack
+        </button>
+        <button class="admin-btn danger" style="flex: 1;" onclick="document.getElementById('rejection-section').style.display='block'">
+          &#10060; Reject Pack
+        </button>
+        <button class="admin-btn secondary">Cancel</button>
+      </div>
+
+      <!-- Rejection Section (shown when clicking Reject) -->
+      <div id="rejection-section" style="margin-top: 20px; padding: 20px; background: var(--red-bg); border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.3);">
+        <h4 style="font-size: 14px; font-weight: 600; color: var(--red); margin-bottom: 12px;">&#10060; Rejection Reason</h4>
+
+        <p class="text-xs text-muted mb-4">Quick select or type custom reason:</p>
+
+        <!-- Rejection Reason Chips -->
+        <div class="rejection-reasons">
+          <span class="rejection-reason-chip">Low quality prompts</span>
+          <span class="rejection-reason-chip selected">Inappropriate content</span>
+          <span class="rejection-reason-chip">Duplicate of existing pack</span>
+          <span class="rejection-reason-chip">Insufficient variety</span>
+          <span class="rejection-reason-chip">Poor preview images</span>
+          <span class="rejection-reason-chip">Copyright concerns</span>
+        </div>
+
+        <textarea class="admin-textarea" placeholder="Add additional details or custom rejection reason..." style="margin-bottom: 16px;">The pack contains prompts that could generate inappropriate content. Please revise prompts #3 and #7 to ensure they comply with our content guidelines.</textarea>
+
+        <div style="display: flex; gap: 12px;">
+          <button class="admin-btn danger" style="flex: 1;">Confirm Rejection</button>
+          <button class="admin-btn secondary" onclick="document.getElementById('rejection-section').style.display='none'">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 3: PARTNER COMMISSION SETTINGS -->
+<!-- ============================================ -->
+<section id="settings" class="admin-section">
+  <h2 class="admin-section-title">3. Partner Commission Settings (Admin Settings)</h2>
+
+  <p class="text-sm text-secondary mb-6">Configure default commission rates and partner-specific overrides for pack sales.</p>
+
+  <!-- Default Commission Rate -->
+  <div class="settings-card">
+    <div class="settings-card-title">&#128176; Default Commission Settings</div>
+
+    <div class="settings-row">
+      <div class="settings-label">
+        <div style="font-weight: 500; color: var(--text-primary);">Default Partner Commission Rate</div>
+        <div class="text-xs text-muted">Commission percentage partners receive from pack sales</div>
+      </div>
+      <div class="settings-value">
+        <div class="commission-input-group">
+          <input type="number" class="admin-input commission-input" value="40" min="0" max="100">
+          <span class="commission-unit">%</span>
+        </div>
+        <button class="admin-btn primary">Save</button>
+      </div>
+    </div>
+
+    <div class="settings-row">
+      <div class="settings-label">
+        <div style="font-weight: 500; color: var(--text-primary);">Test Generation Quota (per partner)</div>
+        <div class="text-xs text-muted">Maximum test generations allowed before pack approval</div>
+      </div>
+      <div class="settings-value">
+        <div class="commission-input-group">
+          <input type="number" class="admin-input commission-input" value="200" min="0" max="1000">
+          <span class="commission-unit">gens</span>
+        </div>
+        <button class="admin-btn primary">Save</button>
+      </div>
+    </div>
+
+    <div class="settings-row">
+      <div class="settings-label">
+        <div style="font-weight: 500; color: var(--text-primary);">Minimum Payout Threshold</div>
+        <div class="text-xs text-muted">Minimum balance required for commission withdrawal</div>
+      </div>
+      <div class="settings-value">
+        <div class="commission-input-group">
+          <input type="number" class="admin-input commission-input" value="1000" min="0">
+          <span class="commission-unit">&#8381;</span>
+        </div>
+        <button class="admin-btn primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partner-Specific Overrides -->
+  <div class="settings-card">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <div class="settings-card-title" style="margin-bottom: 0;">&#128081; Partner-Specific Overrides</div>
+      <button class="admin-btn secondary">+ Add Override</button>
+    </div>
+
+    <p class="text-sm text-muted mb-4">Custom commission rates for specific partners. Overrides the default 40% rate.</p>
+
+    <div class="admin-table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Partner</th>
+            <th>Telegram</th>
+            <th class="text-center">Commission Rate</th>
+            <th class="text-center">Test Quota</th>
+            <th class="text-center">Packs</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div style="font-weight: 500;">Anna Creative</div>
+              <div class="text-xs text-muted">Premium partner since Dec 2025</div>
+            </td>
+            <td class="font-mono text-sm">@annacreative</td>
+            <td class="text-center">
+              <span class="admin-badge coral">50%</span>
+            </td>
+            <td class="text-center">
+              <span>500</span>
+              <span class="text-xs text-muted">(+300)</span>
+            </td>
+            <td class="text-center">8</td>
+            <td>
+              <button class="admin-btn icon-only secondary" title="Edit">&#9998;</button>
+              <button class="admin-btn icon-only danger" title="Remove">&#128465;</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight: 500;">Sarah Sunset</div>
+              <div class="text-xs text-muted">Top performer Q4 2025</div>
+            </td>
+            <td class="font-mono text-sm">@sarahsunset</td>
+            <td class="text-center">
+              <span class="admin-badge coral">45%</span>
+            </td>
+            <td class="text-center">
+              <span>300</span>
+              <span class="text-xs text-muted">(+100)</span>
+            </td>
+            <td class="text-center">5</td>
+            <td>
+              <button class="admin-btn icon-only secondary" title="Edit">&#9998;</button>
+              <button class="admin-btn icon-only danger" title="Remove">&#128465;</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight: 500;">Mike Photo Studio</div>
+              <div class="text-xs text-muted">New partner trial</div>
+            </td>
+            <td class="font-mono text-sm">@mikephoto</td>
+            <td class="text-center">
+              <span class="admin-badge blue">35%</span>
+            </td>
+            <td class="text-center">
+              <span>150</span>
+              <span class="text-xs text-muted">(-50)</span>
+            </td>
+            <td class="text-center">2</td>
+            <td>
+              <button class="admin-btn icon-only secondary" title="Edit">&#9998;</button>
+              <button class="admin-btn icon-only danger" title="Remove">&#128465;</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Edit Override Modal Preview -->
+  <div style="margin-top: 32px; padding: 20px; background: var(--bg-secondary); border-radius: 12px;">
+    <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary);">Edit Override Modal Preview:</h4>
+
+    <div class="admin-modal" style="position: relative; margin: 0; max-width: 450px;">
+      <h3 class="admin-modal-title">Edit Partner Override</h3>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">Partner</label>
+        <div style="padding: 12px; background: var(--bg-tertiary); border-radius: 8px;">
+          <div style="font-weight: 500;">Anna Creative</div>
+          <div class="text-xs text-muted">@annacreative | ID: 987654321</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">Commission Rate (%)</label>
+        <input type="number" class="admin-input" value="50" min="0" max="100">
+        <p class="text-xs text-muted mt-2">Default is 40%. Higher rates for premium partners.</p>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">Test Generation Quota</label>
+        <input type="number" class="admin-input" value="500" min="0" max="2000">
+        <p class="text-xs text-muted mt-2">Default is 200. Maximum test generations before pack needs approval.</p>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">Notes</label>
+        <textarea class="admin-textarea" style="min-height: 80px;">Premium partner - increased rates due to high-quality packs and consistent sales performance.</textarea>
+      </div>
+
+      <div style="display: flex; gap: 12px;">
+        <button class="admin-btn primary" style="flex: 1;">Save Changes</button>
+        <button class="admin-btn secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 4: ADDITIONAL STATES -->
+<!-- ============================================ -->
+<section class="admin-section">
+  <h2 class="admin-section-title">4. Additional UI States</h2>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+
+    <!-- Empty State -->
+    <div style="padding: 20px; background: var(--bg-secondary); border-radius: 12px;">
+      <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary);">Empty State (No Pending Packs):</h4>
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 48px; text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 12px;">&#9989;</div>
+        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--text-primary);">All caught up!</h3>
+        <p style="color: var(--text-secondary); font-size: 14px;">No packs pending review. Check back later.</p>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div style="padding: 20px; background: var(--bg-secondary); border-radius: 12px;">
+      <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary);">Loading State:</h4>
+      <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 48px; text-align: center;">
+        <div style="width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--coral); border-radius: 50%; margin: 0 auto 16px; animation: spin 1s linear infinite;"></div>
+        <p style="color: var(--text-secondary); font-size: 14px;">Loading packs...</p>
+      </div>
+    </div>
+
+    <!-- Approved Confirmation Toast -->
+    <div style="padding: 20px; background: var(--bg-secondary); border-radius: 12px;">
+      <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary);">Approval Toast:</h4>
+      <div style="background: var(--green-bg); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 24px;">&#9989;</span>
+        <div>
+          <div style="font-weight: 500; color: var(--green);">Pack Approved</div>
+          <div class="text-sm" style="color: var(--text-secondary);">"Fantasy Dreams" is now live in the store.</div>
+        </div>
+        <button style="margin-left: auto; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px;">&#10005;</button>
+      </div>
+    </div>
+
+    <!-- Rejected Confirmation Toast -->
+    <div style="padding: 20px; background: var(--bg-secondary); border-radius: 12px;">
+      <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary);">Rejection Toast:</h4>
+      <div style="background: var(--red-bg); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 24px;">&#10060;</span>
+        <div>
+          <div style="font-weight: 500; color: var(--red);">Pack Rejected</div>
+          <div class="text-sm" style="color: var(--text-secondary);">Partner has been notified with rejection reason.</div>
+        </div>
+        <button style="margin-left: auto; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px;">&#10005;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer style="text-align: center; padding: 32px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border);">
+  PinGlass Admin Panel - Pack Moderation Mockups | Dark Theme with Coral (#FF6B6B) Primary
+</footer>
+
+<style>
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+</body>
+</html>
