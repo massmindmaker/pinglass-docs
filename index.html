@@ -890,159 +890,264 @@ graph LR
 
         <section id="ui-style-select">
             <h2>UI: Выбор стиля</h2>
-            <p>Пользователь выбирает стиль (пак промптов) для генерации. Система поддерживает как системные паки, так и паки созданные партнёрами.</p>
+            <p>Пользователь выбирает стиль (пак промптов) для генерации. Новый дизайн использует темную тему с 2-колоночной сеткой и 2x2 коллажами превью.</p>
 
             <div class="feature-box">
                 <h4>Ключевые возможности</h4>
                 <ul>
-                    <li>Отображение доступных паков (публичные + приватные для партнёров)</li>
-                    <li>Детальный просмотр каждого пака с примерами</li>
+                    <li>2-колоночная сетка паков с 2x2 коллажами превью</li>
+                    <li>Бейджи: Featured (amber), Partner (purple), Popular (coral)</li>
+                    <li>Детальный просмотр с masonry-коллажем и статистикой</li>
                     <li>Выбор отображается в Tier Select для подтверждения</li>
                     <li>Поддержка кастомных паков от партнёров</li>
                 </ul>
             </div>
 
-            <div class="mockup-container">
-                <div class="mockup-label">Экраны выбора стиля</div>
-                <div class="mockup-row">
-                    <!-- Styles List -->
-                    <div class="phone-frame">
-                        <div class="phone-screen">
-                            <div class="phone-notch"></div>
-                            <div class="phone-header">
-                                <div class="back-btn">←</div>
-                                <h1>Выберите стиль</h1>
-                            </div>
-                            <div class="phone-content">
-                                <p style="color: var(--gray-500); font-size: 0.85rem; margin-bottom: 15px;">Каждый пак содержит уникальные промпты для генерации</p>
+            <!-- 1. STYLES LIST VIEW -->
+            <h3>1. Styles List View</h3>
+            <p>Экран выбора стиля с 2-колоночной сеткой паков. Каждая карточка содержит 2x2 коллаж превью, бейджи и метаданные.</p>
 
-                                <!-- Pack Card 1 -->
-                                <div style="background: white; border: 2px solid var(--coral-500); border-radius: 12px; padding: 15px; margin-bottom: 12px;">
-                                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-                                        <div>
-                                            <div style="font-weight: 600; font-size: 0.95rem;">PinGlass Premium</div>
-                                            <div style="font-size: 0.75rem; color: var(--gray-500);">23 промпта</div>
+            <div class="mockup-container" style="background: #1a1a2e;">
+                <div class="mockup-label" style="color: #a1a1aa;">styles-list-view.tsx - Pack selection grid</div>
+                <div class="mockup-row" style="justify-content: center;">
+                    <div class="phone-frame" style="background: #0a0a0b; border-color: #27272a; width: 320px; min-width: 320px;">
+                        <div class="phone-screen" style="background: #0a0a0b; min-height: 520px;">
+                            <div class="phone-notch" style="background: #000;"></div>
+                            <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+                                <div>
+                                    <h1 style="font-size: 1.25rem; font-weight: 700; color: #fafafa; margin: 0;">Стили</h1>
+                                    <p style="font-size: 0.75rem; color: #a1a1aa; margin: 2px 0 0 0;">Выберите стиль для генерации</p>
+                                </div>
+                                <div style="margin-left: auto; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: #a1a1aa;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+                                </div>
+                            </div>
+                            <div style="padding: 0 12px 16px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                                <div style="background: #141416; border: 1px solid #27272a; border-radius: 14px; overflow: hidden;">
+                                    <div style="aspect-ratio: 1; display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); position: relative;">
+                                        <div style="background: linear-gradient(135deg, #2d1f3d, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #1f2d3d, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #3d2d1f, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #1f3d2d, #1a1a2e);"></div>
+                                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%);"></div>
+                                        <div style="position: absolute; top: 6px; left: 6px;"><span style="font-size: 9px; font-weight: 600; padding: 2px 5px; border-radius: 4px; background: rgba(245, 158, 11, 0.9); color: white;">Featured</span></div>
+                                    </div>
+                                    <div style="padding: 10px;">
+                                        <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 3px;">
+                                            <span style="font-size: 0.9rem;">🎀</span>
+                                            <h3 style="font-size: 0.8rem; font-weight: 600; color: #fafafa; margin: 0;">PinGlass</h3>
                                         </div>
-                                        <span class="badge badge-pink">Выбран</span>
-                                    </div>
-                                    <p style="font-size: 0.8rem; color: var(--gray-600); margin-bottom: 8px;">Профессиональные портреты для бизнеса и соцсетей</p>
-                                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                                        <span style="background: var(--gray-100); padding: 3px 8px; border-radius: 6px; font-size: 0.7rem;">🎨 Professional</span>
-                                        <span style="background: var(--gray-100); padding: 3px 8px; border-radius: 6px; font-size: 0.7rem;">📸 Lifestyle</span>
-                                        <span style="background: var(--gray-100); padding: 3px 8px; border-radius: 6px; font-size: 0.7rem;">🌟 Creative</span>
+                                        <p style="font-size: 0.65rem; color: #a1a1aa; margin: 0;">23 стиля - 1.2K генераций</p>
                                     </div>
                                 </div>
-
-                                <!-- Pack Card 2 -->
-                                <div style="background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 15px; margin-bottom: 12px;">
-                                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-                                        <div>
-                                            <div style="font-weight: 600; font-size: 0.95rem;">Studio Pro</div>
-                                            <div style="font-size: 0.75rem; color: var(--gray-500);">15 промптов</div>
+                                <div style="background: #141416; border: 1px solid #27272a; border-radius: 14px; overflow: hidden;">
+                                    <div style="aspect-ratio: 1; display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); position: relative;">
+                                        <div style="background: linear-gradient(135deg, #1f2d3d, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #2d1f3d, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #1f3d2d, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #3d2d1f, #1a1a2e);"></div>
+                                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%);"></div>
+                                    </div>
+                                    <div style="padding: 10px;">
+                                        <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 3px;">
+                                            <span style="font-size: 0.9rem;">💼</span>
+                                            <h3 style="font-size: 0.8rem; font-weight: 600; color: #fafafa; margin: 0;">Professional</h3>
                                         </div>
-                                        <span class="badge badge-blue">Партнёр</span>
+                                        <p style="font-size: 0.65rem; color: #a1a1aa; margin: 0;">15 стилей - 856 генераций</p>
                                     </div>
-                                    <p style="font-size: 0.8rem; color: var(--gray-600); margin-bottom: 8px;">Студийные портреты с профессиональным освещением</p>
                                 </div>
-
-                                <!-- Pack Card 3 -->
-                                <div style="background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 15px;">
-                                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-                                        <div>
-                                            <div style="font-weight: 600; font-size: 0.95rem;">Fashion Forward</div>
-                                            <div style="font-size: 0.75rem; color: var(--gray-500);">12 промптов</div>
+                                <div style="background: #141416; border: 1px solid #27272a; border-radius: 14px; overflow: hidden;">
+                                    <div style="aspect-ratio: 1; display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); position: relative;">
+                                        <div style="background: linear-gradient(135deg, #3d1f2d, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #2d3d1f, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #2d1f3d, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #1f2d3d, #1a1a2e);"></div>
+                                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%);"></div>
+                                    </div>
+                                    <div style="padding: 10px;">
+                                        <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 3px;">
+                                            <span style="font-size: 0.9rem;">🌴</span>
+                                            <h3 style="font-size: 0.8rem; font-weight: 600; color: #fafafa; margin: 0;">Lifestyle</h3>
                                         </div>
+                                        <p style="font-size: 0.65rem; color: #a1a1aa; margin: 0;">18 стилей - 743 генерации</p>
                                     </div>
-                                    <p style="font-size: 0.8rem; color: var(--gray-600);">Модные портреты в современном стиле</p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Style Detail View -->
-                    <div class="phone-frame">
-                        <div class="phone-screen">
-                            <div class="phone-notch"></div>
-                            <div class="phone-header">
-                                <div class="back-btn">←</div>
-                                <h1>PinGlass Premium</h1>
-                            </div>
-                            <div class="phone-content">
-                                <div style="background: linear-gradient(135deg, var(--pink-100), var(--purple-100)); height: 120px; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center;">
-                                    <div style="font-size: 2.5rem;">🎨</div>
-                                </div>
-
-                                <h3 style="font-size: 1rem; margin-bottom: 8px;">О паке</h3>
-                                <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 15px;">23 уникальных промпта для создания профессиональных AI-портретов. Включает бизнес, лайфстайл и креативные стили.</p>
-
-                                <h3 style="font-size: 1rem; margin-bottom: 8px;">Включает</h3>
-                                <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 15px;">
-                                    <span style="background: var(--blue-100); color: var(--blue-500); padding: 5px 10px; border-radius: 8px; font-size: 0.75rem;">9 Professional</span>
-                                    <span style="background: var(--green-100); color: #059669; padding: 5px 10px; border-radius: 8px; font-size: 0.75rem;">9 Lifestyle</span>
-                                    <span style="background: var(--purple-100); color: #9333ea; padding: 5px 10px; border-radius: 8px; font-size: 0.75rem;">5 Creative</span>
-                                </div>
-
-                                <h3 style="font-size: 1rem; margin-bottom: 8px;">Примеры</h3>
-                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-                                    <div style="background: var(--gray-200); height: 70px; border-radius: 8px;"></div>
-                                    <div style="background: var(--gray-200); height: 70px; border-radius: 8px;"></div>
-                                    <div style="background: var(--gray-200); height: 70px; border-radius: 8px;"></div>
-                                </div>
-                            </div>
-                            <div class="phone-cta">
-                                <button class="phone-btn phone-btn-primary">Выбрать стиль</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Selected in Tier Select -->
-                    <div class="phone-frame">
-                        <div class="phone-screen">
-                            <div class="phone-notch"></div>
-                            <div class="phone-header">
-                                <div class="back-btn">←</div>
-                                <h1>Выберите пакет</h1>
-                            </div>
-                            <div class="phone-content">
-                                <!-- Selected Style Display -->
-                                <div style="background: linear-gradient(135deg, var(--pink-100), var(--purple-100)); border-radius: 12px; padding: 12px; margin-bottom: 15px;">
-                                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin-bottom: 5px;">Выбран стиль</div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                                        <div>
-                                            <div style="font-weight: 600; font-size: 0.9rem;">PinGlass Premium</div>
-                                            <div style="font-size: 0.75rem; color: var(--gray-600);">23 промпта</div>
+                                <div style="background: #141416; border: 1px solid #27272a; border-radius: 14px; overflow: hidden;">
+                                    <div style="aspect-ratio: 1; display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); position: relative;">
+                                        <div style="background: linear-gradient(135deg, #1f3d3d, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #3d3d1f, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #3d1f2d, #1a1a2e);"></div>
+                                        <div style="background: linear-gradient(135deg, #2d3d1f, #1a1a2e);"></div>
+                                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%);"></div>
+                                        <div style="position: absolute; top: 6px; left: 6px;"><span style="font-size: 9px; font-weight: 600; padding: 2px 5px; border-radius: 4px; background: rgba(139, 92, 246, 0.9); color: white;">Partner</span></div>
+                                    </div>
+                                    <div style="padding: 10px;">
+                                        <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 3px;">
+                                            <span style="font-size: 0.9rem;">💖</span>
+                                            <h3 style="font-size: 0.8rem; font-weight: 600; color: #fafafa; margin: 0;">Dating Profile</h3>
                                         </div>
-                                        <button style="background: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 500;">Изменить</button>
+                                        <p style="font-size: 0.65rem; color: #a1a1aa; margin: 0;">12 стилей - 324 генерации</p>
                                     </div>
                                 </div>
-
-                                <p style="font-size: 0.85rem; color: var(--gray-500); margin-bottom: 12px;">Выберите количество фото для генерации</p>
-
-                                <!-- Tier cards would go here -->
-                                <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 12px; padding: 15px; margin-bottom: 10px;">
-                                    <div style="font-weight: 600; margin-bottom: 5px;">Standard</div>
-                                    <div style="color: var(--coral-500); font-size: 1.2rem; font-weight: 700;">15 фото • 799 ₽</div>
-                                </div>
-                            </div>
-                            <div class="phone-cta">
-                                <button class="phone-btn phone-btn-primary">Продолжить</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <h3>User Flow: Выбор стиля</h3>
+            <!-- 2. STYLE DETAIL VIEW -->
+            <h3>2. Style Detail View</h3>
+            <p>Детальный просмотр выбранного пака с masonry-коллажем, описанием и статистикой использования.</p>
+
+            <div class="mockup-container" style="background: #1a1a2e;">
+                <div class="mockup-label" style="color: #a1a1aa;">style-detail-view.tsx - Pack details with masonry collage</div>
+                <div class="mockup-row" style="justify-content: center;">
+                    <div class="phone-frame" style="background: #0a0a0b; border-color: #27272a; width: 320px; min-width: 320px;">
+                        <div class="phone-screen" style="background: #0a0a0b; min-height: 520px; position: relative;">
+                            <div class="phone-notch" style="background: #000;"></div>
+                            <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: #a1a1aa;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 1.5rem;">🎀</span>
+                                    <h1 style="font-size: 1.1rem; font-weight: 600; color: #fafafa; margin: 0;">PinGlass</h1>
+                                </div>
+                            </div>
+                            <div style="padding: 0 16px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px;">
+                                <div style="border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #2d1f3d, #1a1a2e); aspect-ratio: 1.2/1;"></div>
+                                <div style="border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #1f2d3d, #1a1a2e); aspect-ratio: 1/1.2;"></div>
+                                <div style="border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #3d2d1f, #1a1a2e); aspect-ratio: 1/1.2;"></div>
+                                <div style="border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, #1f3d2d, #1a1a2e); aspect-ratio: 1.2/1;"></div>
+                            </div>
+                            <p style="text-align: center; color: #a1a1aa; font-size: 0.85rem; line-height: 1.5; margin-bottom: 16px; padding: 0 16px;">Классический стиль PinGlass с мягким розовым оттенком. Идеально подходит для аватаров в соцсетях.</p>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 16px;">
+                                <div style="display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: #a1a1aa;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><span><strong style="color: #fafafa;">23</strong> prompts</span></div>
+                                <div style="display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: #a1a1aa;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span><strong style="color: #fafafa;">1,247</strong> uses</span></div>
+                            </div>
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 16px; background: rgba(10, 10, 11, 0.9); border-top: 1px solid #27272a;">
+                                <button style="width: 100%; padding: 14px 20px; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #FF6B6B, #FF8888); color: white; box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);">Select this style</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. UPDATED TIER SELECT -->
+            <h3>3. Updated Tier Select View</h3>
+            <p>Экран выбора пакета теперь включает блок "Selected Style" вверху, показывающий текущий выбранный стиль с возможностью изменения.</p>
+
+            <div class="mockup-container" style="background: #1a1a2e;">
+                <div class="mockup-label" style="color: #a1a1aa;">tier-select-view.tsx - Package selection with style block (NEW!)</div>
+                <div class="mockup-row" style="justify-content: center;">
+                    <div class="phone-frame" style="background: #0a0a0b; border-color: #27272a; width: 320px; min-width: 320px;">
+                        <div class="phone-screen" style="background: #0a0a0b; min-height: 580px; position: relative;">
+                            <div class="phone-notch" style="background: #000;"></div>
+                            <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 10px; color: #a1a1aa;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                                </div>
+                                <h1 style="font-size: 1rem; font-weight: 600; color: #fafafa; margin: 0;">Выберите пакет</h1>
+                            </div>
+                            <div style="padding: 0 16px;">
+                                <!-- Selected Style Block (NEW!) -->
+                                <div style="padding: 10px; background: rgba(28, 28, 31, 0.3); border: 1px solid #27272a; border-radius: 12px; margin-bottom: 16px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 48px; height: 48px; border-radius: 10px; background: linear-gradient(135deg, #2d1f3d, #1a1a2e); display: flex; align-items: center; justify-content: center;"><span style="font-size: 1.25rem;">🎀</span></div>
+                                        <div style="flex: 1;">
+                                            <p style="font-size: 0.65rem; color: #a1a1aa; margin: 0;">Стиль</p>
+                                            <p style="font-weight: 500; color: #fafafa; margin: 2px 0 0 0; font-size: 0.85rem;">PinGlass</p>
+                                        </div>
+                                        <button style="font-size: 0.8rem; color: #FF6B6B; background: none; border: none;">Изменить</button>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 80px;">
+                                    <!-- Starter Tier -->
+                                    <div style="background: #141416; border: 1px solid #27272a; border-radius: 14px; padding: 14px 16px;">
+                                        <div style="display: flex; align-items: center; gap: 14px;">
+                                            <div style="width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: #1c1c1f; color: #a1a1aa; font-size: 1.25rem; font-weight: 700;">7</div>
+                                            <div style="flex: 1;">
+                                                <div style="font-size: 1rem; font-weight: 600; color: #fafafa;">7 фотографий</div>
+                                                <p style="font-size: 0.8rem; color: #a1a1aa; margin: 2px 0 0 0;">Попробовать AI-фото</p>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <div style="font-size: 1.25rem; font-weight: 700; color: #fafafa;">299 ₽</div>
+                                                <div style="font-size: 0.65rem; color: #a1a1aa;">43 ₽/фото</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Standard Tier (Selected) -->
+                                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(139, 92, 246, 0.05)); border: 2px solid #FF6B6B; border-radius: 14px; padding: 14px 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.4);">
+                                        <div style="display: flex; align-items: center; gap: 14px;">
+                                            <div style="width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #FF6B6B, rgba(255, 107, 107, 0.8)); color: white; font-size: 1.25rem; font-weight: 700; box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);">15</div>
+                                            <div style="flex: 1;">
+                                                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
+                                                    <span style="font-size: 1rem; font-weight: 600; color: #fafafa;">15 фотографий</span>
+                                                    <span style="font-size: 9px; font-weight: 600; padding: 2px 5px; border-radius: 4px; background: #FF6B6B; color: white;">Хит</span>
+                                                </div>
+                                                <p style="font-size: 0.8rem; color: #a1a1aa; margin: 0;">Оптимальный выбор</p>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <div style="font-size: 1.25rem; font-weight: 700; color: #fafafa;">499 ₽</div>
+                                                <div style="font-size: 0.65rem; color: #a1a1aa;">33 ₽/фото</div>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 4px; color: #FF6B6B; font-size: 0.8rem; font-weight: 500; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 107, 107, 0.2);">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Выбрано
+                                        </div>
+                                    </div>
+                                    <!-- Premium Tier (Discounted) -->
+                                    <div style="background: #141416; border: 1px solid #27272a; border-radius: 14px; padding: 14px 16px;">
+                                        <div style="display: flex; align-items: center; gap: 14px;">
+                                            <div style="width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: #1c1c1f; color: #a1a1aa; font-size: 1.25rem; font-weight: 700;">23</div>
+                                            <div style="flex: 1;">
+                                                <div style="font-size: 1rem; font-weight: 600; color: #fafafa;">23 фотографии</div>
+                                                <p style="font-size: 0.8rem; color: #a1a1aa; margin: 2px 0 0 0;">Максимум возможностей</p>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <div style="display: flex; align-items: center; gap: 6px; justify-content: flex-end;">
+                                                    <span style="font-size: 0.75rem; color: #a1a1aa; text-decoration: line-through;">799 ₽</span>
+                                                    <span style="font-size: 0.65rem; padding: 2px 5px; border-radius: 4px; background: #10B981; color: white; font-weight: 600;">-12%</span>
+                                                </div>
+                                                <div style="font-size: 1.25rem; font-weight: 700; color: #10B981;">699 ₽</div>
+                                                <div style="font-size: 0.65rem; color: #a1a1aa;">30 ₽/фото</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 16px; background: rgba(10, 10, 11, 0.9); border-top: 1px solid #27272a;">
+                                <button style="width: 100%; padding: 16px 20px; border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #FF6B6B, #FF8888); color: white; box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);">Оплатить и получить 15 фото</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-box" style="margin-top: 15px;">
+                <h4>User Flow Summary</h4>
+                <ol>
+                    <li><strong>Styles List:</strong> 2-колоночная сетка с 2x2 коллажами превью</li>
+                    <li><strong>Style Detail:</strong> Masonry-коллаж + статистика + Select button</li>
+                    <li><strong>Tier Select (NEW):</strong> Selected Style Block вверху с кнопкой "Изменить"</li>
+                    <li>Tier cards с radio selection (WCAG 2.1 keyboard navigation)</li>
+                </ol>
+            </div>
+
+            <h3>User Flow: Полный путь выбора стиля</h3>
             <div class="mermaid">
 graph LR
     A[Upload Complete] --> B[Styles List View]
     B --> C{Выбрать стиль}
     C --> D[Style Detail View]
     D --> E{Подтвердить}
-    E -->|Да| F[Tier Select]
-    E -->|Изменить| B
-    F --> G[Отображение выбранного стиля]
-    G --> H[Продолжить к оплате]
+    E -->|Select| F[Tier Select]
+    E -->|Back| B
+    F --> G["Selected Style Block (NEW!)"]
+    G --> H{Изменить?}
+    H -->|Да| B
+    H -->|Нет| I[Выбор tier]
+    I --> J[Оплата]
             </div>
 
             <h3>API Integration</h3>
@@ -1056,14 +1161,28 @@ graph LR
                     <tr><td><code>POST /api/user/active-pack</code></td><td>Установить выбранный пак</td></tr>
                 </tbody>
             </table>
+
+            <h3>Implementation Notes</h3>
+            <table>
+                <thead>
+                    <tr><th>Component</th><th>Details</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>StylesListView</code></td><td>Uses <code>usePacks()</code> hook. 2-column grid with PackCard components featuring 2x2 collage previews</td></tr>
+                    <tr><td><code>StyleDetailView</code></td><td>Masonry collage with staggered animation. Fixed bottom CTA</td></tr>
+                    <tr><td><code>TierSelectView</code></td><td>NEW: Selected Style Block using <code>useActivePack()</code> hook. "Изменить" triggers <code>onChangeStyle</code></td></tr>
+                    <tr><td>Badges</td><td>Featured (amber), Partner (purple), Popular (coral), Discount (green)</td></tr>
+                    <tr><td>Accessibility</td><td>Radio group with keyboard navigation (Arrow keys, Home/End). ARIA roles on all elements</td></tr>
+                </tbody>
+            </table>
         </section>
 
         <section id="ui-tier-select">
             <h2>UI: Выбор тарифа</h2>
-            <p>Выбор пакета с WCAG 2.1 keyboard navigation и динамическими ценами из БД.</p>
+            <p>Выбор пакета с WCAG 2.1 keyboard navigation и динамическими ценами из БД. <strong>NEW:</strong> Теперь включает блок "Selected Style" вверху экрана.</p>
 
             <div class="mockup-container">
-                <div class="mockup-label">Экран выбора тарифа</div>
+                <div class="mockup-label">Экран выбора тарифа (с Selected Style Block)</div>
                 <div class="mockup-row">
                     <div class="phone-frame">
                         <div class="phone-screen">
@@ -2053,76 +2172,258 @@ const hash = crypto
 
         <section id="admin-packs">
             <h2>Admin: Pack Moderation</h2>
-            <p>Модерация паков промптов от партнёров. Проверка качества, безопасности и соответствия гайдлайнам.</p>
+            <p>Модерация паков промптов от партнёров. Проверка качества, безопасности и соответствия гайдлайнам перед публикацией.</p>
 
+            <!-- Stats Overview -->
+            <div class="kpi-grid" style="margin-bottom: 20px;">
+                <div class="kpi-card">
+                    <div class="kpi-label">📦 Total Packs</div>
+                    <div class="kpi-value">47</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">⏳ Pending Review</div>
+                    <div class="kpi-value" style="color: var(--amber-500);">3</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">✅ Approved</div>
+                    <div class="kpi-value green">38</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">❌ Rejected</div>
+                    <div class="kpi-value red">6</div>
+                </div>
+            </div>
+
+            <!-- Pack Moderation Table Mockup -->
+            <h3>Desktop: Pack Moderation Table</h3>
             <div class="admin-mockup">
                 <div class="admin-nav">
                     <a href="#" class="admin-nav-item">👑 Partners</a>
-                    <a href="#" class="admin-nav-item active">📦 Packs</a>
+                    <a href="#" class="admin-nav-item active">📦 Pack Moderation</a>
                     <a href="#" class="admin-nav-item">💬 Telegram</a>
                 </div>
                 <div class="admin-content">
-                    <div class="tabs-row">
-                        <span class="tab-badge active">Pending</span>
-                        <span class="tab-badge">Approved</span>
-                        <span class="tab-badge">Rejected</span>
+                    <!-- Sub-tabs -->
+                    <div class="tabs-row" style="margin-bottom: 15px;">
+                        <span class="tab-badge active">Pending (3)</span>
+                        <span class="tab-badge">Approved (38)</span>
+                        <span class="tab-badge">Rejected (6)</span>
                     </div>
 
-                    <h4 style="margin-top: 20px;">Пакеты на модерации</h4>
+                    <!-- Filters -->
+                    <div class="filters-row">
+                        <select class="filter-select">
+                            <option>All Statuses</option>
+                            <option selected>Pending</option>
+                            <option>Approved</option>
+                            <option>Rejected</option>
+                        </select>
+                        <input type="text" class="filter-input" placeholder="Search by pack name or partner..." style="width: 280px;">
+                        <button class="btn-sm btn-secondary" style="margin-left: auto;">🔄 Refresh</button>
+                    </div>
+
+                    <!-- Pack Table -->
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th style="width: 80px;">Preview</th>
                                 <th>Pack Name</th>
                                 <th>Partner</th>
-                                <th>Prompts</th>
+                                <th style="text-align: center;">Prompts</th>
                                 <th>Submitted</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Pending Pack 1 -->
                             <tr>
-                                <td>#347</td>
-                                <td><strong>Studio Pro</strong></td>
-                                <td>@photographer_alex</td>
-                                <td>15</td>
-                                <td>2 hours ago</td>
-                                <td><span class="status-badge status-pending">Review</span></td>
                                 <td>
-                                    <button class="btn-sm btn-primary">Review</button>
-                                    <button class="btn-sm btn-danger">Reject</button>
+                                    <div style="width: 60px; height: 60px; background: var(--gray-100); border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; overflow: hidden;">
+                                        <div style="background: var(--coral-500); opacity: 0.3;"></div>
+                                        <div style="background: var(--coral-500); opacity: 0.5;"></div>
+                                        <div style="background: var(--coral-500); opacity: 0.4;"></div>
+                                        <div style="background: var(--coral-500); opacity: 0.6;"></div>
+                                    </div>
                                 </td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 18px;">🌈</span>
+                                        <div>
+                                            <div style="font-weight: 600;">Fantasy Dreams</div>
+                                            <div style="font-size: 0.75rem; color: var(--gray-500);">Magical fairy tale style portraits</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>Anna Creative</div>
+                                    <div style="font-size: 0.75rem; color: var(--gray-500); font-family: monospace;">@annacreative</div>
+                                </td>
+                                <td style="text-align: center;">12</td>
+                                <td style="color: var(--gray-500); font-size: 0.85rem;">Jan 28, 2026 14:32</td>
+                                <td><span class="status-badge status-pending">⏳ Pending</span></td>
+                                <td><button class="btn-sm btn-primary">Review</button></td>
                             </tr>
+                            <!-- Pending Pack 2 -->
                             <tr>
-                                <td>#346</td>
-                                <td><strong>Fashion Forward</strong></td>
-                                <td>@style_guru</td>
-                                <td>12</td>
-                                <td>5 hours ago</td>
-                                <td><span class="status-badge status-pending">Review</span></td>
                                 <td>
-                                    <button class="btn-sm btn-primary">Review</button>
-                                    <button class="btn-sm btn-danger">Reject</button>
+                                    <div style="width: 60px; height: 60px; background: var(--gray-100); border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; overflow: hidden;">
+                                        <div style="background: #ec4899; opacity: 0.3;"></div>
+                                        <div style="background: #ec4899; opacity: 0.5;"></div>
+                                        <div style="background: #ec4899; opacity: 0.4;"></div>
+                                        <div style="background: #ec4899; opacity: 0.6;"></div>
+                                    </div>
                                 </td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 18px;">💗</span>
+                                        <div>
+                                            <div style="font-weight: 600;">Romantic Vibes</div>
+                                            <div style="font-size: 0.75rem; color: var(--gray-500);">Soft pink aesthetic portraits</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>Maria Photo</div>
+                                    <div style="font-size: 0.75rem; color: var(--gray-500); font-family: monospace;">@mariaphoto</div>
+                                </td>
+                                <td style="text-align: center;">8</td>
+                                <td style="color: var(--gray-500); font-size: 0.85rem;">Jan 27, 2026 09:15</td>
+                                <td><span class="status-badge status-pending">⏳ Pending</span></td>
+                                <td><button class="btn-sm btn-primary">Review</button></td>
                             </tr>
-                            <tr>
-                                <td>#345</td>
-                                <td><strong>Corporate Headshots</strong></td>
-                                <td>@business_photos</td>
-                                <td>10</td>
-                                <td>1 day ago</td>
-                                <td><span class="status-badge status-processing">Testing</span></td>
+                            <!-- Approved Pack -->
+                            <tr style="opacity: 0.7;">
                                 <td>
-                                    <button class="btn-sm btn-success">Approve</button>
-                                    <button class="btn-sm btn-danger">Reject</button>
+                                    <div style="width: 60px; height: 60px; background: var(--gray-100); border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; overflow: hidden;">
+                                        <div style="background: #22c55e; opacity: 0.3;"></div>
+                                        <div style="background: #22c55e; opacity: 0.5;"></div>
+                                        <div style="background: #22c55e; opacity: 0.4;"></div>
+                                        <div style="background: #22c55e; opacity: 0.6;"></div>
+                                    </div>
                                 </td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span style="font-size: 18px;">🌅</span>
+                                        <div>
+                                            <div style="font-weight: 600;">Golden Hour</div>
+                                            <div style="font-size: 0.75rem; color: var(--gray-500);">Warm sunset lighting portraits</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>Sarah Sunset</div>
+                                    <div style="font-size: 0.75rem; color: var(--gray-500); font-family: monospace;">@sarahsunset</div>
+                                </td>
+                                <td style="text-align: center;">10</td>
+                                <td style="color: var(--gray-500); font-size: 0.85rem;">Jan 20, 2026 11:22</td>
+                                <td><span class="status-badge status-succeeded">✅ Approved</span></td>
+                                <td><button class="btn-sm btn-secondary">View</button></td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <!-- Pagination -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--gray-200);">
+                        <span style="font-size: 0.85rem; color: var(--gray-500);">Showing 1-3 of 47 packs</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn-sm btn-secondary" disabled>← Prev</button>
+                            <button class="btn-sm btn-secondary">Next →</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- Pack Review Modal Mockup -->
+            <h3>Desktop: Pack Review Modal</h3>
+            <p style="color: var(--gray-500); font-size: 0.85rem; margin-bottom: 15px;">Modal opens when clicking "Review" button on a pending pack</p>
+
+            <div style="background: var(--gray-100); border-radius: 12px; padding: 20px;">
+                <div style="background: white; border-radius: 12px; border: 1px solid var(--gray-200); padding: 24px; max-width: 800px; margin: 0 auto;">
+                    <!-- Modal Header -->
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                        <div>
+                            <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px;">Review Pack: Fantasy Dreams</h4>
+                            <p style="font-size: 0.85rem; color: var(--gray-500);">Submitted by <strong>Anna Creative</strong> (@annacreative) on Jan 28, 2026</p>
+                        </div>
+                        <span class="status-badge status-pending">⏳ Pending Review</span>
+                    </div>
+
+                    <!-- Pack Preview Images -->
+                    <div style="margin-bottom: 20px;">
+                        <h5 style="font-size: 0.85rem; font-weight: 600; color: var(--gray-600); margin-bottom: 10px;">Pack Preview Images</h5>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+                            <div style="aspect-ratio: 1; background: linear-gradient(135deg, var(--coral-500) 0%, var(--pink-500) 100%); opacity: 0.6; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem;">Preview 1</div>
+                            <div style="aspect-ratio: 1; background: linear-gradient(135deg, var(--coral-500) 0%, var(--pink-500) 100%); opacity: 0.7; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem;">Preview 2</div>
+                            <div style="aspect-ratio: 1; background: linear-gradient(135deg, var(--coral-500) 0%, var(--pink-500) 100%); opacity: 0.8; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem;">Preview 3</div>
+                            <div style="aspect-ratio: 1; background: linear-gradient(135deg, var(--coral-500) 0%, var(--pink-500) 100%); opacity: 0.9; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem;">Preview 4</div>
+                        </div>
+                    </div>
+
+                    <!-- Pack Info Grid -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                        <div style="background: var(--gray-50); padding: 12px; border-radius: 8px;">
+                            <div style="font-size: 0.75rem; color: var(--gray-500); margin-bottom: 4px;">Pack Name</div>
+                            <div style="font-weight: 500;">🌈 Fantasy Dreams</div>
+                        </div>
+                        <div style="background: var(--gray-50); padding: 12px; border-radius: 8px;">
+                            <div style="font-size: 0.75rem; color: var(--gray-500); margin-bottom: 4px;">Partner / Telegram ID</div>
+                            <div style="font-weight: 500;">Anna Creative <span style="color: var(--gray-400); font-family: monospace; font-size: 0.85rem;">(987654321)</span></div>
+                        </div>
+                        <div style="background: var(--gray-50); padding: 12px; border-radius: 8px; grid-column: span 2;">
+                            <div style="font-size: 0.75rem; color: var(--gray-500); margin-bottom: 4px;">Description</div>
+                            <div style="font-size: 0.9rem;">Magical fairy tale style portraits with ethereal lighting, fantasy backgrounds, and dreamy color grading.</div>
+                        </div>
+                    </div>
+
+                    <!-- Prompts List -->
+                    <div style="margin-bottom: 20px;">
+                        <h5 style="font-size: 0.85rem; font-weight: 600; color: var(--gray-600); margin-bottom: 10px;">Prompts (12 total)</h5>
+                        <div style="max-height: 180px; overflow-y: auto; border: 1px solid var(--gray-200); border-radius: 8px;">
+                            <div style="display: flex; gap: 12px; padding: 12px; border-bottom: 1px solid var(--gray-100);">
+                                <div style="width: 50px; height: 50px; background: var(--gray-100); border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--gray-400);">Img 1</div>
+                                <div style="flex: 1; min-width: 0;">
+                                    <div style="font-size: 0.7rem; font-weight: 600; color: var(--coral-500); margin-bottom: 2px;">Prompt #1</div>
+                                    <div style="font-size: 0.8rem; color: var(--gray-600);">Ethereal fairy portrait of {subject} in an enchanted forest, soft golden light, butterfly wings...</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 12px; padding: 12px; border-bottom: 1px solid var(--gray-100);">
+                                <div style="width: 50px; height: 50px; background: var(--gray-100); border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--gray-400);">Img 2</div>
+                                <div style="flex: 1; min-width: 0;">
+                                    <div style="font-size: 0.7rem; font-weight: 600; color: var(--coral-500); margin-bottom: 2px;">Prompt #2</div>
+                                    <div style="font-size: 0.8rem; color: var(--gray-600);">Mystical princess portrait of {subject} in a crystal palace, iridescent lighting, crown of stars...</div>
+                                </div>
+                            </div>
+                            <div style="padding: 10px; text-align: center; font-size: 0.75rem; color: var(--gray-400);">+ 10 more prompts</div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 12px; padding-top: 16px; border-top: 1px solid var(--gray-200);">
+                        <button class="btn-sm btn-success" style="flex: 1; padding: 12px;">✅ Approve Pack</button>
+                        <button class="btn-sm btn-danger" style="flex: 1; padding: 12px;">❌ Reject Pack</button>
+                        <button class="btn-sm btn-secondary" style="padding: 12px;">Cancel</button>
+                    </div>
+
+                    <!-- Rejection Section -->
+                    <div style="margin-top: 16px; padding: 16px; background: var(--red-100); border-radius: 10px; border: 1px solid rgba(239, 68, 68, 0.3);">
+                        <h5 style="font-size: 0.85rem; font-weight: 600; color: var(--red-500); margin-bottom: 10px;">❌ Rejection Reason</h5>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+                            <span style="padding: 6px 12px; background: white; border: 1px solid var(--gray-300); border-radius: 20px; font-size: 0.75rem; cursor: pointer;">Low quality prompts</span>
+                            <span style="padding: 6px 12px; background: rgba(255, 107, 107, 0.15); border: 1px solid var(--coral-500); border-radius: 20px; font-size: 0.75rem; color: var(--coral-500);">Inappropriate content</span>
+                            <span style="padding: 6px 12px; background: white; border: 1px solid var(--gray-300); border-radius: 20px; font-size: 0.75rem; cursor: pointer;">Duplicate pack</span>
+                            <span style="padding: 6px 12px; background: white; border: 1px solid var(--gray-300); border-radius: 20px; font-size: 0.75rem; cursor: pointer;">Poor previews</span>
+                        </div>
+                        <textarea style="width: 100%; height: 60px; border: 1px solid var(--gray-300); border-radius: 8px; padding: 10px; font-size: 0.85rem; resize: none; margin-bottom: 12px;" placeholder="Additional details...">Please revise prompts #3 and #7 to comply with content guidelines.</textarea>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn-sm btn-danger" style="flex: 1;">Confirm Rejection</button>
+                            <button class="btn-sm btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moderation Checklist -->
             <h3>Модерационный чеклист</h3>
             <div class="feature-box">
                 <h4>Проверка перед публикацией</h4>
@@ -2136,6 +2437,7 @@ const hash = crypto
                 </ul>
             </div>
 
+            <!-- Review Workflow -->
             <h3>Review Workflow</h3>
             <div class="mermaid">
 graph LR
@@ -2151,19 +2453,31 @@ graph LR
     G --> I[Available to Users]
             </div>
 
-            <h3>Статистика модерации</h3>
-            <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="kpi-card">
-                    <div class="kpi-label">Pending Review</div>
-                    <div class="kpi-value" style="color: var(--amber-500);">12</div>
+            <!-- UI States -->
+            <h3>Additional UI States</h3>
+            <div class="card-grid">
+                <div class="card" style="text-align: center; padding: 30px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">✅</div>
+                    <h4 style="color: var(--gray-800);">All caught up!</h4>
+                    <p style="font-size: 0.85rem;">No packs pending review.</p>
                 </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Approved (7 days)</div>
-                    <div class="kpi-value green">34</div>
+                <div class="card" style="background: var(--green-100); border-color: rgba(34, 197, 94, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 1.5rem;">✅</span>
+                        <div>
+                            <div style="font-weight: 600; color: #059669;">Pack Approved</div>
+                            <div style="font-size: 0.8rem; color: var(--gray-600);">"Fantasy Dreams" is now live.</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Rejected (7 days)</div>
-                    <div class="kpi-value red">8</div>
+                <div class="card" style="background: var(--red-100); border-color: rgba(239, 68, 68, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 1.5rem;">❌</span>
+                        <div>
+                            <div style="font-weight: 600; color: #dc2626;">Pack Rejected</div>
+                            <div style="font-size: 0.8rem; color: var(--gray-600);">Partner notified.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2324,11 +2638,112 @@ graph LR
                 </div>
                 <div class="admin-content">
                     <div class="tabs-row">
-                        <span class="tab-badge active">Тарифы</span>
+                        <span class="tab-badge">Тарифы</span>
                         <span class="tab-badge">Платежи</span>
+                        <span class="tab-badge active">Комиссии партнёров</span>
                         <span class="tab-badge">AI</span>
                         <span class="tab-badge">Telegram</span>
                     </div>
+
+                    <!-- Partner Commission Settings -->
+                    <h4 style="margin-top: 20px;">💰 Default Commission Settings</h4>
+                    <div style="background: var(--gray-50); border-radius: 10px; padding: 15px; margin-top: 10px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--gray-200);">
+                            <div>
+                                <div style="font-weight: 500;">Default Partner Commission Rate</div>
+                                <div style="font-size: 0.75rem; color: var(--gray-500);">Commission percentage from pack sales</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <input type="number" value="40" style="width: 70px; padding: 8px; border: 1px solid var(--gray-300); border-radius: 6px; text-align: center; font-weight: 600;">
+                                <span style="color: var(--gray-500);">%</span>
+                                <button class="btn-sm btn-primary">Save</button>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--gray-200);">
+                            <div>
+                                <div style="font-weight: 500;">Test Generation Quota (per partner)</div>
+                                <div style="font-size: 0.75rem; color: var(--gray-500);">Max test generations before pack approval</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <input type="number" value="200" style="width: 70px; padding: 8px; border: 1px solid var(--gray-300); border-radius: 6px; text-align: center; font-weight: 600;">
+                                <span style="color: var(--gray-500);">gens</span>
+                                <button class="btn-sm btn-primary">Save</button>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0;">
+                            <div>
+                                <div style="font-weight: 500;">Minimum Payout Threshold</div>
+                                <div style="font-size: 0.75rem; color: var(--gray-500);">Min balance for withdrawal</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <input type="number" value="1000" style="width: 80px; padding: 8px; border: 1px solid var(--gray-300); border-radius: 6px; text-align: center; font-weight: 600;">
+                                <span style="color: var(--gray-500);">₽</span>
+                                <button class="btn-sm btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partner-Specific Overrides -->
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                        <h4 style="margin: 0;">👑 Partner-Specific Overrides</h4>
+                        <button class="btn-sm btn-secondary">+ Add Override</button>
+                    </div>
+                    <table class="admin-table" style="margin-bottom: 20px;">
+                        <thead>
+                            <tr>
+                                <th>Partner</th>
+                                <th>Telegram</th>
+                                <th style="text-align: center;">Commission</th>
+                                <th style="text-align: center;">Test Quota</th>
+                                <th style="text-align: center;">Packs</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div style="font-weight: 500;">Anna Creative</div>
+                                    <div style="font-size: 0.7rem; color: var(--gray-500);">Premium partner</div>
+                                </td>
+                                <td style="font-family: monospace; font-size: 0.85rem;">@annacreative</td>
+                                <td style="text-align: center;"><span class="badge badge-pink">50%</span></td>
+                                <td style="text-align: center;">500 <span style="font-size: 0.7rem; color: var(--green-500);">(+300)</span></td>
+                                <td style="text-align: center;">8</td>
+                                <td>
+                                    <button class="btn-sm btn-secondary">Edit</button>
+                                    <button class="btn-sm btn-danger">Remove</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="font-weight: 500;">Sarah Sunset</div>
+                                    <div style="font-size: 0.7rem; color: var(--gray-500);">Top performer</div>
+                                </td>
+                                <td style="font-family: monospace; font-size: 0.85rem;">@sarahsunset</td>
+                                <td style="text-align: center;"><span class="badge badge-pink">45%</span></td>
+                                <td style="text-align: center;">300 <span style="font-size: 0.7rem; color: var(--green-500);">(+100)</span></td>
+                                <td style="text-align: center;">5</td>
+                                <td>
+                                    <button class="btn-sm btn-secondary">Edit</button>
+                                    <button class="btn-sm btn-danger">Remove</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="font-weight: 500;">Mike Photo</div>
+                                    <div style="font-size: 0.7rem; color: var(--gray-500);">New partner</div>
+                                </td>
+                                <td style="font-family: monospace; font-size: 0.85rem;">@mikephoto</td>
+                                <td style="text-align: center;"><span class="badge badge-blue">35%</span></td>
+                                <td style="text-align: center;">150 <span style="font-size: 0.7rem; color: var(--red-500);">(-50)</span></td>
+                                <td style="text-align: center;">2</td>
+                                <td>
+                                    <button class="btn-sm btn-secondary">Edit</button>
+                                    <button class="btn-sm btn-danger">Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                     <h4 style="margin-top: 20px;">Pricing Tiers</h4>
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 10px;">
@@ -2925,255 +3340,696 @@ ee3edd4 fix: add maxDuration to payment/upload/telegram routes
 f761428 fix: migrate critical user-facing routes to Edge runtime</code></pre>
         </section>
 
-        <!-- PARTNER CABINET -->
-        <section id="partner-cabinet">
-            <h2>Partner Cabinet (11 Pages)</h2>
-            <p>Полнофункциональный кабинет партнёра для управления реферальной программой и создания кастомных паков. Партнёры получают <strong>40% комиссии</strong> за продажи по своей реферальной ссылке.</p>
+        <!-- ============================================ -->
+        <!-- PARTNER CABINET - WITH INLINE MOCKUPS -->
+        <!-- ============================================ -->
 
-            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <!-- Partner Cabinet CSS for Dark Theme Mockups -->
+        <style>
+            /* Partner Cabinet Dark Theme Variables */
+            .partner-mockup-dark {
+                --pc-bg: #16161a;
+                --pc-bg-secondary: #1e1e22;
+                --pc-card: #1e1e22;
+                --pc-border: #2a2a30;
+                --pc-primary: #FF6B6B;
+                --pc-accent: #A78BFA;
+                --pc-text: #f5f5f5;
+                --pc-text-muted: #888;
+                --pc-success: #4ADE80;
+                --pc-warning: #FBBF24;
+                --pc-error: #EF4444;
+                background: var(--pc-bg);
+                color: var(--pc-text);
+                font-family: 'Inter', system-ui, sans-serif;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            }
+            .partner-mockup-dark .pc-header {
+                display: flex; align-items: center; justify-content: space-between;
+                padding: 14px 20px; background: rgba(22, 22, 26, 0.95); border-bottom: 1px solid var(--pc-border);
+            }
+            .partner-mockup-dark .pc-logo {
+                display: flex; align-items: center; gap: 10px;
+            }
+            .partner-mockup-dark .pc-logo-icon {
+                width: 36px; height: 36px;
+                background: linear-gradient(135deg, var(--pc-primary), var(--pc-accent));
+                border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px;
+            }
+            .partner-mockup-dark .pc-logo-text {
+                font-size: 16px; font-weight: 700;
+                background: linear-gradient(135deg, var(--pc-primary), var(--pc-accent));
+                -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            }
+            .partner-mockup-dark .pc-nav {
+                display: flex; gap: 4px; padding: 0 20px 10px;
+                border-bottom: 1px solid var(--pc-border); background: var(--pc-bg); overflow-x: auto;
+            }
+            .partner-mockup-dark .pc-nav-item {
+                padding: 8px 12px; font-size: 12px; font-weight: 500;
+                color: var(--pc-text-muted); border-radius: 6px; white-space: nowrap;
+            }
+            .partner-mockup-dark .pc-nav-item.active {
+                color: var(--pc-primary); background: rgba(255, 107, 107, 0.1);
+            }
+            .partner-mockup-dark .pc-content { padding: 16px; }
+            .partner-mockup-dark .pc-badge {
+                display: inline-flex; align-items: center; padding: 3px 8px;
+                font-size: 10px; font-weight: 600; border-radius: 5px; text-transform: uppercase;
+            }
+            .partner-mockup-dark .pc-badge-partner { background: rgba(167, 139, 250, 0.2); color: var(--pc-accent); }
+            .partner-mockup-dark .pc-badge-approved { background: rgba(74, 222, 128, 0.2); color: var(--pc-success); }
+            .partner-mockup-dark .pc-badge-pending { background: rgba(251, 191, 36, 0.2); color: var(--pc-warning); }
+            .partner-mockup-dark .pc-badge-draft { background: rgba(136, 136, 136, 0.2); color: #888; }
+            .partner-mockup-dark .pc-badge-rejected { background: rgba(239, 68, 68, 0.2); color: var(--pc-error); }
+            .partner-mockup-dark .pc-card {
+                background: var(--pc-card); border: 1px solid var(--pc-border);
+                border-radius: 10px; padding: 14px;
+            }
+            .partner-mockup-dark .pc-btn-primary {
+                display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+                padding: 8px 14px; background: linear-gradient(135deg, var(--pc-primary), #FF8E53);
+                border: none; border-radius: 8px; color: white; font-size: 12px; font-weight: 600;
+            }
+            .partner-mockup-dark .pc-btn-accent {
+                display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+                padding: 8px 14px; background: linear-gradient(135deg, var(--pc-accent), #8B5CF6);
+                border: none; border-radius: 8px; color: white; font-size: 12px; font-weight: 600;
+            }
+            .partner-mockup-dark .pc-btn-secondary {
+                display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+                padding: 8px 14px; background: var(--pc-card); border: 1px solid var(--pc-border);
+                border-radius: 8px; color: var(--pc-text); font-size: 12px; font-weight: 500;
+            }
+            .partner-mockup-dark .pc-chart-bar {
+                width: 14px; background: linear-gradient(180deg, var(--pc-primary), var(--pc-accent));
+                border-radius: 3px 3px 0 0; opacity: 0.8;
+            }
+            .partner-phone-frame {
+                width: 300px; background: linear-gradient(145deg, #1e1e22, #16161a);
+                border-radius: 32px; border: 3px solid #333; overflow: hidden;
+                position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.5); margin: 0 auto;
+            }
+            .partner-phone-frame::before {
+                content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+                width: 100px; height: 24px; background: #000; border-radius: 0 0 14px 14px; z-index: 100;
+            }
+            .partner-phone-screen { padding-top: 36px; min-height: 520px; background: #16161a; }
+            .pc-pack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+            .pc-pack-card {
+                background: var(--pc-card); border: 1px solid var(--pc-border);
+                border-radius: 10px; overflow: hidden; transition: all 0.2s;
+            }
+            .pc-pack-card:hover { border-color: var(--pc-primary); transform: translateY(-2px); }
+            .pc-pack-preview {
+                display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+                aspect-ratio: 1; background: var(--pc-border);
+            }
+            .pc-pack-preview-item { background: linear-gradient(135deg, #2a2a30, #3a3a44); }
+            .pc-pack-info { padding: 10px; }
+            .pc-editor-layout {
+                display: grid; grid-template-columns: 200px 1fr 220px;
+                gap: 12px; min-height: 350px;
+            }
+            .pc-editor-sidebar, .pc-editor-main, .pc-editor-panel {
+                background: var(--pc-card); border: 1px solid var(--pc-border);
+                border-radius: 10px; padding: 12px;
+            }
+            .pc-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+            .pc-photo-item {
+                aspect-ratio: 1; background: linear-gradient(135deg, #2a2a30, #3a3a44);
+                border-radius: 6px;
+            }
+            .pc-prompt-item {
+                display: flex; align-items: center; gap: 8px; padding: 8px;
+                background: rgba(255, 255, 255, 0.03); border: 1px solid var(--pc-border);
+                border-radius: 6px; margin-bottom: 5px;
+            }
+            .pc-prompt-preview {
+                width: 36px; height: 36px;
+                background: linear-gradient(135deg, #2a2a30, #3a3a44);
+                border-radius: 5px; flex-shrink: 0;
+            }
+            .pc-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+            .pc-table th {
+                background: rgba(255, 255, 255, 0.03); padding: 8px 10px; text-align: left;
+                font-size: 10px; font-weight: 500; color: var(--pc-text-muted);
+                text-transform: uppercase; border-bottom: 1px solid var(--pc-border);
+            }
+            .pc-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            @media (max-width: 900px) { .pc-editor-layout { grid-template-columns: 1fr; } }
+        </style>
+
+        <section id="partner-cabinet">
+            <h2>Partner Cabinet</h2>
+            <p>Полнофункциональный кабинет партнёра для управления реферальной программой, создания кастомных паков стилей и вывода заработанных средств. Партнёры получают <strong>50% комиссии</strong> (против 10% для обычных рефереров).</p>
+
+            <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr);">
                 <div class="stat">
-                    <div class="stat-value">11</div>
-                    <div class="stat-label">Страниц кабинета</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">40%</div>
+                    <div class="stat-value">50%</div>
                     <div class="stat-label">Комиссия партнёра</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">₽1,000</div>
-                    <div class="stat-label">Минимум вывода</div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Основных экранов</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">200</div>
+                    <div class="stat-label">Тестовых генераций</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5,000 RUB</div>
+                    <div class="stat-label">Мин. вывод</div>
                 </div>
             </div>
 
-            <h3>Overview: Как стать партнёром</h3>
-            <div class="feature-box">
-                <h4>Требования к партнёрам</h4>
-                <ul>
-                    <li><strong>Минимум 5 рефералов</strong> с успешными платежами</li>
-                    <li><strong>Создание качественных паков</strong> — модерация перед публикацией</li>
-                    <li><strong>Активность</strong> — минимум 1 генерация в месяц</li>
-                    <li><strong>Соблюдение правил</strong> — запрет на спам и накрутку</li>
-                </ul>
+            <h3>Целевая аудитория</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Кто такие партнёры?</h4>
+                    <ul>
+                        <li>Инфлюенсеры с аудиторией</li>
+                        <li>Создатели контента</li>
+                        <li>Фотографы и дизайнеры</li>
+                        <li>Владельцы тематических каналов</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Преимущества партнёрства</h4>
+                    <ul>
+                        <li>50% комиссия (vs 10% обычных)</li>
+                        <li>Создание своих паков стилей</li>
+                        <li>200 бесплатных тест-генераций</li>
+                        <li>Приоритетная поддержка</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Требования</h4>
+                    <ul>
+                        <li>Минимум 5 успешных рефералов</li>
+                        <li>Аккаунт не заблокирован</li>
+                        <li>Прохождение модерации паков</li>
+                        <li>Соблюдение ToS</li>
+                    </ul>
+                </div>
             </div>
+        </section>
 
-            <div class="feature-box" style="background: linear-gradient(135deg, var(--green-100), var(--blue-100));">
-                <h4>Преимущества партнёрства</h4>
-                <ul>
-                    <li>📈 <strong>40% комиссия</strong> против 10% для обычных пользователей</li>
-                    <li>🎨 <strong>Создание паков</strong> — монетизация промптов</li>
-                    <li>💳 <strong>Низкий минимум вывода</strong> — от ₽1,000</li>
-                    <li>📊 <strong>Детальная аналитика</strong> — отслеживание каждого реферала</li>
-                    <li>🚀 <strong>Приоритетная поддержка</strong> — отдельный чат</li>
-                </ul>
-            </div>
-
-            <h3>Dashboard: Главная страница</h3>
-            <p>Центральный хаб с KPI метриками, графиком доходов и последними начислениями.</p>
+        <!-- PARTNER LOGIN -->
+        <section id="partner-login">
+            <h3>1. Partner Login</h3>
+            <p style="font-family: monospace; color: var(--purple-500); font-size: 0.85rem; margin-bottom: 8px;">/partner/login</p>
+            <p>Страница аутентификации для доступа в кабинет партнёра. Поддерживает email/password и авторизацию через Telegram.</p>
 
             <div class="mockup-container">
-                <div class="mockup-label">Partner Dashboard Mockup</div>
-                <!-- Placeholder for mockup -->
-                <div style="background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 20px; min-height: 300px; display: flex; align-items: center; justify-content: center; color: var(--gray-400);">
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 10px;">📊</div>
-                        <div>Dashboard Mockup Coming Soon</div>
-                        <div style="font-size: 0.75rem; margin-top: 5px;">KPI cards, earnings chart, recent activity</div>
+                <div class="mockup-label">Partner Login - Mobile View</div>
+                <div class="partner-phone-frame">
+                    <div class="partner-phone-screen" style="display: flex; align-items: center; justify-content: center; background: radial-gradient(at 30% 30%, rgba(255,107,107,0.1) 0%, transparent 50%), radial-gradient(at 70% 70%, rgba(167,139,250,0.08) 0%, transparent 50%), #16161a;">
+                        <div style="width: 100%; padding: 16px;">
+                            <div style="text-align: center; margin-bottom: 24px;">
+                                <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #FF6B6B, #A78BFA); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 20px; box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);">&#128081;</div>
+                                <h1 style="font-size: 20px; font-weight: 700; background: linear-gradient(135deg, #FF6B6B, #A78BFA); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #FF6B6B;">Partner Cabinet</h1>
+                                <p style="color: #888; font-size: 12px; margin-top: 4px;">PinGlass Partner Program</p>
+                            </div>
+                            <div style="background: rgba(30, 30, 34, 0.8); border: 1px solid #2a2a30; border-radius: 14px; padding: 16px;">
+                                <h2 style="font-size: 16px; font-weight: 600; text-align: center; margin-bottom: 16px; color: #f5f5f5;">Sign In</h2>
+                                <div style="margin-bottom: 12px;">
+                                    <label style="display: block; font-size: 11px; font-weight: 500; color: #888; margin-bottom: 5px;">Email</label>
+                                    <input type="text" placeholder="partner@example.com" style="width: 100%; padding: 10px 12px; background: #1e1e22; border: 2px solid #2a2a30; border-radius: 8px; color: #f5f5f5; font-size: 13px;">
+                                </div>
+                                <div style="margin-bottom: 5px;">
+                                    <label style="display: block; font-size: 11px; font-weight: 500; color: #888; margin-bottom: 5px;">Password</label>
+                                    <input type="password" placeholder="Enter password" style="width: 100%; padding: 10px 12px; background: #1e1e22; border: 2px solid #2a2a30; border-radius: 8px; color: #f5f5f5; font-size: 13px;">
+                                </div>
+                                <div style="text-align: right; margin-bottom: 14px;">
+                                    <a href="#" style="font-size: 11px; color: #A78BFA; text-decoration: none;">Forgot password?</a>
+                                </div>
+                                <button style="width: 100%; padding: 10px; background: linear-gradient(135deg, #FF6B6B, #FF8E53); border: none; border-radius: 8px; color: white; font-size: 13px; font-weight: 600;">Sign In</button>
+                                <div style="display: flex; align-items: center; gap: 8px; margin: 14px 0;">
+                                    <div style="flex: 1; height: 1px; background: #2a2a30;"></div>
+                                    <span style="font-size: 10px; color: #888;">or</span>
+                                    <div style="flex: 1; height: 1px; background: #2a2a30;"></div>
+                                </div>
+                                <button style="width: 100%; padding: 10px; background: #1e1e22; border: 1px solid #2a2a30; border-radius: 8px; color: #f5f5f5; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                                    <span style="color: #60A5FA;">&#9993;</span> Continue with Telegram
+                                </button>
+                                <p style="text-align: center; margin-top: 14px; font-size: 11px; color: #888;">
+                                    Want to become a partner? <a href="#" style="color: #FF6B6B; text-decoration: none; font-weight: 500;">Apply here</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h4>KPI Cards</h4>
-                    <ul>
-                        <li>Текущий баланс</li>
-                        <li>Доход за месяц</li>
-                        <li>Всего рефералов</li>
-                        <li>Активных паков</li>
-                    </ul>
+                    <h4>Методы авторизации</h4>
+                    <ul><li>Email + Password</li><li>Telegram OAuth</li><li>Magic Link (email)</li></ul>
                 </div>
                 <div class="feature-card">
-                    <h4>Earnings Chart</h4>
-                    <ul>
-                        <li>График за 30/90 дней</li>
-                        <li>Группировка по дням/неделям</li>
-                        <li>Тренд роста/падения</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h4>Recent Activity</h4>
-                    <ul>
-                        <li>Последние начисления</li>
-                        <li>Новые рефералы</li>
-                        <li>Использование паков</li>
-                    </ul>
+                    <h4>Безопасность</h4>
+                    <ul><li>Rate limiting (5 попыток/мин)</li><li>CAPTCHA после 3 неудач</li><li>Session timeout 24h</li></ul>
                 </div>
             </div>
+        </section>
 
-            <h3>Pack Management: Создание и редактирование</h3>
-            <p>Партнёры могут создавать кастомные паки промптов и монетизировать их. Каждый пак проходит модерацию перед публикацией.</p>
+        <!-- PARTNER DASHBOARD -->
+        <section id="partner-dashboard">
+            <h3>2. Partner Dashboard</h3>
+            <p style="font-family: monospace; color: var(--purple-500); font-size: 0.85rem; margin-bottom: 8px;">/partner/dashboard</p>
+            <p>Главная страница кабинета с KPI-метриками, графиком доходов, последними начислениями и быстрыми действиями.</p>
 
             <div class="mockup-container">
-                <div class="mockup-label">Pack Editor Mockup (3-column layout)</div>
-                <!-- Placeholder for mockup -->
-                <div style="background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 20px; min-height: 400px; display: flex; align-items: center; justify-content: center; color: var(--gray-400);">
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 10px;">🎨</div>
-                        <div>Pack Editor Mockup Coming Soon</div>
-                        <div style="font-size: 0.75rem; margin-top: 5px;">3-column layout: prompts list, editor, preview</div>
+                <div class="mockup-label">Partner Dashboard - Desktop View</div>
+                <div class="partner-mockup-dark" style="max-width: 1000px;">
+                    <div class="pc-header">
+                        <div class="pc-logo">
+                            <div class="pc-logo-icon">&#128081;</div>
+                            <span class="pc-logo-text">Partner Cabinet</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="pc-badge pc-badge-partner">Partner 50%</span>
+                            <div style="width: 28px; height: 28px; background: linear-gradient(135deg, #FF6B6B, #A78BFA); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 12px;">J</div>
+                        </div>
+                    </div>
+                    <div class="pc-nav">
+                        <div class="pc-nav-item active">&#128200; Dashboard</div>
+                        <div class="pc-nav-item">&#127912; My Packs</div>
+                        <div class="pc-nav-item">&#128176; Withdrawals</div>
+                        <div class="pc-nav-item">&#128101; Referrals</div>
+                    </div>
+                    <div class="pc-content">
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px;">
+                            <div class="pc-card">
+                                <div style="font-size: 11px; color: #888; margin-bottom: 4px;">&#128176; Total Earnings</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #4ADE80;">24,850 RUB</div>
+                                <div style="font-size: 10px; color: #4ADE80; margin-top: 3px;">+12% vs last month</div>
+                            </div>
+                            <div class="pc-card">
+                                <div style="font-size: 11px; color: #888; margin-bottom: 4px;">&#128197; This Month</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #FF6B6B;">4,250 RUB</div>
+                                <div style="font-size: 10px; color: #4ADE80; margin-top: 3px;">+8 referrals</div>
+                            </div>
+                            <div class="pc-card">
+                                <div style="font-size: 11px; color: #888; margin-bottom: 4px;">&#128101; Active Referrals</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #A78BFA;">89</div>
+                                <div style="font-size: 10px; color: #4ADE80; margin-top: 3px;">+5 this week</div>
+                            </div>
+                            <div class="pc-card">
+                                <div style="font-size: 11px; color: #888; margin-bottom: 4px;">&#128200; Conversion</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #f5f5f5;">32%</div>
+                                <div style="font-size: 10px; color: #4ADE80; margin-top: 3px;">+2.5%</div>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 14px;">
+                            <div class="pc-card">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                    <h3 style="font-size: 13px; font-weight: 600; color: #f5f5f5;">Earnings (Last 30 Days)</h3>
+                                </div>
+                                <div style="height: 120px; background: linear-gradient(180deg, rgba(255, 107, 107, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%); border-radius: 8px; display: flex; align-items: flex-end; justify-content: space-around; padding: 14px; gap: 5px;">
+                                    <div class="pc-chart-bar" style="height: 35%;"></div>
+                                    <div class="pc-chart-bar" style="height: 55%;"></div>
+                                    <div class="pc-chart-bar" style="height: 40%;"></div>
+                                    <div class="pc-chart-bar" style="height: 75%;"></div>
+                                    <div class="pc-chart-bar" style="height: 60%;"></div>
+                                    <div class="pc-chart-bar" style="height: 85%;"></div>
+                                    <div class="pc-chart-bar" style="height: 65%;"></div>
+                                    <div class="pc-chart-bar" style="height: 50%;"></div>
+                                    <div class="pc-chart-bar" style="height: 80%;"></div>
+                                    <div class="pc-chart-bar" style="height: 70%;"></div>
+                                    <div class="pc-chart-bar" style="height: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="pc-card">
+                                <h3 style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: #f5f5f5;">Quick Actions</h3>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <button class="pc-btn-primary" style="width: 100%;">&#127912; Create New Pack</button>
+                                    <button class="pc-btn-accent" style="width: 100%;">&#128176; Request Withdrawal</button>
+                                    <button class="pc-btn-secondary" style="width: 100%;">&#128203; Copy Referral Link</button>
+                                </div>
+                                <div style="margin-top: 12px; padding: 12px; background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(255, 107, 107, 0.05)); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 8px;">
+                                    <p style="font-size: 10px; color: #888;">Available Balance</p>
+                                    <p style="font-size: 18px; font-weight: 700; color: #4ADE80;">8,450 RUB</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="feature-box">
-                <h4>Pack Editor Features</h4>
-                <ul>
-                    <li><strong>3-column layout</strong> — промпты / редактор / превью</li>
-                    <li><strong>Prompt testing</strong> — 5 тестовых генераций с квотой</li>
-                    <li><strong>Tags & Categories</strong> — для упрощения поиска</li>
-                    <li><strong>Public/Private</strong> — контроль видимости</li>
-                    <li><strong>Version control</strong> — история изменений</li>
-                </ul>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>KPI Metrics</h4>
+                    <ul><li>Total Earnings (all time)</li><li>This Month revenue</li><li>Active Referrals</li><li>Conversion Rate</li></ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Chart Features</h4>
+                    <ul><li>30/60/90 day periods</li><li>Daily/Weekly grouping</li><li>Trend indicators</li></ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Quick Actions</h4>
+                    <ul><li>Create new pack</li><li>Request withdrawal</li><li>Copy referral link</li></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTNER PACKS -->
+        <section id="partner-packs">
+            <h3>3. Pack Management</h3>
+            <p style="font-family: monospace; color: var(--purple-500); font-size: 0.85rem; margin-bottom: 8px;">/partner/packs</p>
+            <p>Список всех паков партнёра с 2x2 превью-коллажами, статусами модерации и фильтрацией.</p>
+
+            <div class="mockup-container">
+                <div class="mockup-label">Pack Management - Grid View</div>
+                <div class="partner-mockup-dark" style="max-width: 1000px;">
+                    <div class="pc-header">
+                        <div class="pc-logo">
+                            <div class="pc-logo-icon">&#128081;</div>
+                            <span class="pc-logo-text">Partner Cabinet</span>
+                        </div>
+                        <span class="pc-badge pc-badge-partner">Partner 50%</span>
+                    </div>
+                    <div class="pc-nav">
+                        <div class="pc-nav-item">&#128200; Dashboard</div>
+                        <div class="pc-nav-item active">&#127912; My Packs</div>
+                        <div class="pc-nav-item">&#128176; Withdrawals</div>
+                        <div class="pc-nav-item">&#128101; Referrals</div>
+                    </div>
+                    <div class="pc-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <h2 style="font-size: 16px; font-weight: 600; color: #f5f5f5;">My Packs</h2>
+                                <span style="font-size: 12px; color: #888;">(6 total)</span>
+                            </div>
+                            <button class="pc-btn-primary">+ Create New Pack</button>
+                        </div>
+                        <div class="pc-pack-grid">
+                            <div class="pc-pack-card">
+                                <div class="pc-pack-preview">
+                                    <div class="pc-pack-preview-item"></div><div class="pc-pack-preview-item"></div>
+                                    <div class="pc-pack-preview-item"></div><div class="pc-pack-preview-item"></div>
+                                </div>
+                                <div class="pc-pack-info">
+                                    <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 4px;">
+                                        <span style="font-size: 14px;">&#127775;</span>
+                                        <span style="font-weight: 600; font-size: 13px;">Premium</span>
+                                        <span class="pc-badge pc-badge-approved">Approved</span>
+                                    </div>
+                                    <div style="font-size: 11px; color: #888;">23 prompts | 156 sales</div>
+                                </div>
+                            </div>
+                            <div class="pc-pack-card">
+                                <div class="pc-pack-preview">
+                                    <div class="pc-pack-preview-item"></div><div class="pc-pack-preview-item"></div>
+                                    <div class="pc-pack-preview-item"></div><div class="pc-pack-preview-item"></div>
+                                </div>
+                                <div class="pc-pack-info">
+                                    <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 4px;">
+                                        <span style="font-size: 14px;">&#127752;</span>
+                                        <span style="font-weight: 600; font-size: 13px;">Business</span>
+                                        <span class="pc-badge pc-badge-approved">Approved</span>
+                                    </div>
+                                    <div style="font-size: 11px; color: #888;">15 prompts | 89 sales</div>
+                                </div>
+                            </div>
+                            <div class="pc-pack-card">
+                                <div class="pc-pack-preview">
+                                    <div class="pc-pack-preview-item"></div><div class="pc-pack-preview-item"></div>
+                                    <div class="pc-pack-preview-item"></div><div class="pc-pack-preview-item"></div>
+                                </div>
+                                <div class="pc-pack-info">
+                                    <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 4px;">
+                                        <span style="font-size: 14px;">&#127774;</span>
+                                        <span style="font-weight: 600; font-size: 13px;">Summer</span>
+                                        <span class="pc-badge pc-badge-pending">Pending</span>
+                                    </div>
+                                    <div style="font-size: 11px; color: #888;">18 prompts | Review</div>
+                                </div>
+                            </div>
+                            <div class="pc-pack-card">
+                                <div class="pc-pack-preview">
+                                    <div class="pc-pack-preview-item"></div><div class="pc-pack-preview-item"></div>
+                                    <div class="pc-pack-preview-item"></div><div class="pc-pack-preview-item"></div>
+                                </div>
+                                <div class="pc-pack-info">
+                                    <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 4px;">
+                                        <span style="font-size: 14px;">&#127912;</span>
+                                        <span style="font-weight: 600; font-size: 13px;">Creative</span>
+                                        <span class="pc-badge pc-badge-draft">Draft</span>
+                                    </div>
+                                    <div style="font-size: 11px; color: #888;">8 prompts | Editing</div>
+                                </div>
+                            </div>
+                            <div class="pc-pack-card" style="border-style: dashed; display: flex; align-items: center; justify-content: center; min-height: 160px;">
+                                <div style="text-align: center; color: #888;">
+                                    <div style="font-size: 28px; margin-bottom: 6px;">+</div>
+                                    <p style="font-size: 12px;">Create New</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Pack Statuses</h4>
+                    <ul><li><strong>Draft</strong> - In progress</li><li><strong>Pending</strong> - Under review</li><li><strong>Approved</strong> - Live</li><li><strong>Rejected</strong> - Needs fix</li></ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Pack Actions</h4>
+                    <ul><li>Edit prompts</li><li>Test generation</li><li>Submit for review</li><li>View analytics</li></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTNER PACK EDITOR -->
+        <section id="partner-editor">
+            <h3>4. Pack Editor (Key Screen)</h3>
+            <p style="font-family: monospace; color: var(--purple-500); font-size: 0.85rem; margin-bottom: 8px;">/partner/packs/[id]</p>
+            <p>Основной экран редактирования пака с 3-колоночным layout: референсные изображения | тестер промптов | список промптов.</p>
+
+            <div class="mockup-container">
+                <div class="mockup-label">Pack Editor - 3-Column Layout</div>
+                <div class="partner-mockup-dark" style="max-width: 1100px;">
+                    <div class="pc-header">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button style="width: 32px; height: 32px; background: #1e1e22; border: 1px solid #2a2a30; border-radius: 7px; color: #888;">&larr;</button>
+                            <div>
+                                <div style="display: flex; align-items: center; gap: 6px;">
+                                    <span style="font-size: 16px;">&#127774;</span>
+                                    <span style="font-size: 14px; font-weight: 600; color: #f5f5f5;">Summer Vibes</span>
+                                    <span class="pc-badge pc-badge-draft">Draft</span>
+                                </div>
+                                <p style="font-size: 10px; color: #888;">18 prompts | Last saved 5 min ago</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="pc-btn-secondary">Save Draft</button>
+                            <button class="pc-btn-accent">Submit for Review</button>
+                        </div>
+                    </div>
+                    <div class="pc-content">
+                        <div class="pc-editor-layout">
+                            <div class="pc-editor-sidebar">
+                                <h3 style="font-size: 12px; font-weight: 600; margin-bottom: 10px; color: #f5f5f5;">&#128247; References <span style="font-size: 9px; color: #888;">(5-8 req)</span></h3>
+                                <div class="pc-photo-grid" style="margin-bottom: 10px;">
+                                    <div class="pc-photo-item"></div><div class="pc-photo-item"></div><div class="pc-photo-item"></div>
+                                    <div class="pc-photo-item"></div><div class="pc-photo-item"></div>
+                                    <div class="pc-photo-item" style="border: 2px dashed #2a2a30; background: transparent; display: flex; align-items: center; justify-content: center;"><span style="font-size: 14px; color: #888;">+</span></div>
+                                </div>
+                                <div style="padding: 8px; background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2); border-radius: 6px;">
+                                    <p style="font-size: 10px; color: #4ADE80;">&#9989; 5/8 photos uploaded</p>
+                                </div>
+                            </div>
+                            <div class="pc-editor-main">
+                                <h3 style="font-size: 12px; font-weight: 600; margin-bottom: 10px; color: #f5f5f5;">&#9889; Prompt Tester</h3>
+                                <div style="display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 6px; margin-bottom: 10px;">
+                                    <span style="font-size: 12px;">&#127775;</span>
+                                    <div style="flex: 1; height: 4px; background: #2a2a30; border-radius: 2px; overflow: hidden;"><div style="width: 10%; height: 100%; background: linear-gradient(90deg, #A78BFA, #FF6B6B);"></div></div>
+                                    <span style="font-size: 10px; color: #A78BFA;">180/200</span>
+                                </div>
+                                <textarea style="width: 100%; min-height: 80px; padding: 10px; background: #1e1e22; border: 2px solid #2a2a30; border-radius: 8px; color: #f5f5f5; font-size: 12px; font-family: inherit; resize: vertical; margin-bottom: 10px;" placeholder="Enter prompt...">Casual summer portrait on beach at sunset...</textarea>
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                                    <label style="font-size: 11px; color: #888;">Photos:</label>
+                                    <select style="padding: 5px 8px; background: #1e1e22; border: 1px solid #2a2a30; border-radius: 5px; color: #f5f5f5; font-size: 11px;"><option>2</option></select>
+                                    <div style="flex: 1;"></div>
+                                    <button class="pc-btn-primary">&#9889; Generate</button>
+                                </div>
+                                <p style="font-size: 10px; color: #888; margin-bottom: 6px;">Results</p>
+                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                    <div style="aspect-ratio: 1; background: linear-gradient(135deg, #2a2a30, #3a3a44); border-radius: 8px; position: relative;">
+                                        <button style="position: absolute; bottom: 5px; right: 5px; width: 24px; height: 24px; background: #A78BFA; border: none; border-radius: 5px; color: white; font-size: 12px;">+</button>
+                                    </div>
+                                    <div style="aspect-ratio: 1; background: linear-gradient(135deg, #2a2a30, #3a3a44); border-radius: 8px; position: relative;">
+                                        <button style="position: absolute; bottom: 5px; right: 5px; width: 24px; height: 24px; background: #A78BFA; border: none; border-radius: 5px; color: white; font-size: 12px;">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pc-editor-panel">
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                                    <h3 style="font-size: 12px; font-weight: 600; color: #f5f5f5;">&#128203; Prompts <span style="font-size: 9px; color: #888;">(18)</span></h3>
+                                    <button style="width: 24px; height: 24px; background: #1e1e22; border: 1px solid #2a2a30; border-radius: 5px; color: #888; font-size: 12px;">+</button>
+                                </div>
+                                <div class="pc-prompt-item">
+                                    <span style="color: #888; font-size: 10px;">&#9776;</span>
+                                    <div class="pc-prompt-preview"></div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <p style="font-size: 11px; color: #f5f5f5; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Beach sunset...</p>
+                                        <p style="font-size: 9px; color: #888;">#1 | today</p>
+                                    </div>
+                                </div>
+                                <div class="pc-prompt-item">
+                                    <span style="color: #888; font-size: 10px;">&#9776;</span>
+                                    <div class="pc-prompt-preview"></div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <p style="font-size: 11px; color: #f5f5f5;">Pool party...</p>
+                                        <p style="font-size: 9px; color: #888;">#2 | yesterday</p>
+                                    </div>
+                                </div>
+                                <div class="pc-prompt-item">
+                                    <span style="color: #888; font-size: 10px;">&#9776;</span>
+                                    <div class="pc-prompt-preview"></div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <p style="font-size: 11px; color: #f5f5f5;">Tropical...</p>
+                                        <p style="font-size: 9px; color: #888;">#3 | 2d ago</p>
+                                    </div>
+                                </div>
+                                <div style="text-align: center; padding: 8px; color: #888; font-size: 10px;">+15 more</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Left: References</h4>
+                    <ul><li>Upload 5-8 photos</li><li>Drag-n-drop</li><li>Quality tips</li></ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Center: Tester</h4>
+                    <ul><li>200 free tests/month</li><li>1-4 photos per test</li><li>Add to pack</li></ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Right: Prompts</h4>
+                    <ul><li>Drag-n-drop reorder</li><li>Edit/delete</li><li>Preview thumbnails</li></ul>
+                </div>
             </div>
 
             <h4>Prompt Testing Quota</h4>
             <table>
-                <thead>
-                    <tr><th>Параметр</th><th>Значение</th><th>Описание</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Quota per Pack</td><td>5 тестов</td><td>Бесплатные тест-генерации</td></tr>
-                    <tr><td>Reset</td><td>При публикации</td><td>Квота обновляется</td></tr>
-                    <tr><td>Additional Tests</td><td>₽50/test</td><td>Сверх квоты</td></tr>
-                </tbody>
+                <tr><th>Parameter</th><th>Value</th><th>Notes</th></tr>
+                <tr><td>Monthly Quota</td><td>200</td><td>Free test generations</td></tr>
+                <tr><td>Reset</td><td>1st of month</td><td>Quota resets monthly</td></tr>
+                <tr><td>Additional</td><td>50 RUB/test</td><td>After exhausted</td></tr>
             </table>
+        </section>
 
-            <h4>Moderation Flow</h4>
-            <div class="mermaid">
-graph LR
-    A[Create Pack] --> B[Add Prompts]
-    B --> C[Test Generation]
-    C --> D{Submit for Review}
-    D --> E[Admin Moderation]
-    E --> F{Approved?}
-    F -->|Yes| G[Published]
-    F -->|No| H[Rejected + Feedback]
-    H --> B
-    G --> I[Available to Users]
-            </div>
-
-            <h3>Earnings & Withdrawals</h3>
-            <p>Комиссионные зачисляются ПОСЛЕ завершения генерации (защита от chargebacks). Вывод возможен от ₽1,000.</p>
+        <!-- PARTNER WITHDRAWALS -->
+        <section id="partner-withdrawals">
+            <h3>5. Withdrawals</h3>
+            <p style="font-family: monospace; color: var(--purple-500); font-size: 0.85rem; margin-bottom: 8px;">/partner/withdrawals</p>
+            <p>Управление выводом средств: текущий баланс, история выводов, расчёт НДФЛ 13%.</p>
 
             <div class="mockup-container">
-                <div class="mockup-label">Earnings Page Mockup</div>
-                <!-- Placeholder for mockup -->
-                <div style="background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 20px; min-height: 300px; display: flex; align-items: center; justify-content: center; color: var(--gray-400);">
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem; margin-bottom: 10px;">💰</div>
-                        <div>Earnings & Withdrawals Mockup Coming Soon</div>
-                        <div style="font-size: 0.75rem; margin-top: 5px;">Transaction history, withdrawal form, payment methods</div>
+                <div class="mockup-label">Withdrawals - Balance &amp; History</div>
+                <div class="partner-mockup-dark" style="max-width: 900px;">
+                    <div class="pc-header">
+                        <div class="pc-logo">
+                            <div class="pc-logo-icon">&#128081;</div>
+                            <span class="pc-logo-text">Partner Cabinet</span>
+                        </div>
+                        <span class="pc-badge pc-badge-partner">Partner 50%</span>
+                    </div>
+                    <div class="pc-nav">
+                        <div class="pc-nav-item">&#128200; Dashboard</div>
+                        <div class="pc-nav-item">&#127912; My Packs</div>
+                        <div class="pc-nav-item active">&#128176; Withdrawals</div>
+                        <div class="pc-nav-item">&#128101; Referrals</div>
+                    </div>
+                    <div class="pc-content">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+                            <div class="pc-card" style="background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(167, 139, 250, 0.05)); border-color: rgba(74, 222, 128, 0.2);">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <div style="width: 40px; height: 40px; background: rgba(74, 222, 128, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px;">&#128176;</div>
+                                    <div>
+                                        <p style="font-size: 11px; color: #888;">Available Balance</p>
+                                        <p style="font-size: 22px; font-weight: 700; color: #4ADE80;">8,450 RUB</p>
+                                    </div>
+                                </div>
+                                <button class="pc-btn-accent" style="width: 100%;">Request Withdrawal</button>
+                                <p style="font-size: 9px; color: #888; text-align: center; margin-top: 5px;">Min: 5,000 RUB | NDFL 13%</p>
+                            </div>
+                            <div class="pc-card">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <div style="width: 40px; height: 40px; background: rgba(255, 107, 107, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px;">&#128200;</div>
+                                    <div>
+                                        <p style="font-size: 11px; color: #888;">Total Earnings</p>
+                                        <p style="font-size: 20px; font-weight: 700; color: #f5f5f5;">24,850 RUB</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 16px;">
+                                    <div><p style="font-size: 10px; color: #888;">Withdrawn</p><p style="font-size: 14px; font-weight: 600; color: #FF6B6B;">16,400 RUB</p></div>
+                                    <div><p style="font-size: 10px; color: #888;">Pending</p><p style="font-size: 14px; font-weight: 600; color: #FBBF24;">0 RUB</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 12px; background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.2); border-radius: 8px; margin-bottom: 14px;">
+                            <p style="font-size: 12px; font-weight: 500; color: #FBBF24;">&#9888; NDFL 13% Tax Deduction</p>
+                            <p style="font-size: 11px; color: #888;">Upon withdrawal, 13% tax will be deducted. You receive 87%.</p>
+                        </div>
+                        <div class="pc-card">
+                            <h3 style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: #f5f5f5;">Withdrawal History</h3>
+                            <table class="pc-table">
+                                <thead><tr><th>ID</th><th>Amount</th><th>NDFL</th><th>Payout</th><th>Status</th><th>Date</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="font-family: monospace;">#12</td><td>5,000 RUB</td><td style="color: #EF4444;">-650</td><td style="color: #4ADE80; font-weight: 500;">4,350</td><td><span class="pc-badge pc-badge-approved">Done</span></td><td style="color: #888;">25.01</td></tr>
+                                    <tr><td style="font-family: monospace;">#11</td><td>7,000 RUB</td><td style="color: #EF4444;">-910</td><td style="color: #4ADE80; font-weight: 500;">6,090</td><td><span class="pc-badge pc-badge-approved">Done</span></td><td style="color: #888;">10.01</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <h4>Commission Calculation</h4>
-            <table>
-                <thead>
-                    <tr><th>Источник</th><th>Комиссия</th><th>Пример (₽799 тариф)</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Реферальная продажа</td><td>40%</td><td>₽319.60</td></tr>
-                    <tr><td>Использование пака</td><td>20%</td><td>₽159.80</td></tr>
-                    <tr><td>Premium pack</td><td>50%</td><td>₽399.50</td></tr>
-                </tbody>
-            </table>
-
-            <h4>Withdrawal Process</h4>
-            <div class="feature-box">
-                <h4>Методы вывода</h4>
-                <ul>
-                    <li><strong>Банковская карта</strong> — 0% комиссия, 1-3 рабочих дня</li>
-                    <li><strong>СБП</strong> — 0% комиссия, моментально</li>
-                    <li><strong>Минимум</strong> — ₽1,000 (было ₽5,000 для обычных)</li>
-                    <li><strong>Лимит</strong> — 3 вывода в месяц</li>
-                </ul>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>Balance Info</h4>
+                    <ul><li>Available for withdrawal</li><li>Total earnings</li><li>Already withdrawn</li></ul>
+                </div>
+                <div class="feature-card">
+                    <h4>NDFL 13%</h4>
+                    <ul><li>Auto deduction</li><li>87% payout</li><li>Tax receipt</li></ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Methods</h4>
+                    <ul><li>Bank card (1-3 days)</li><li>SBP (instant)</li><li>Min: 5,000 RUB</li></ul>
+                </div>
             </div>
+
+            <h4>Withdrawal Limits</h4>
+            <table>
+                <tr><th>Parameter</th><th>Value</th><th>Notes</th></tr>
+                <tr><td>Minimum</td><td>5,000 RUB</td><td>Per request</td></tr>
+                <tr><td>Maximum</td><td>100,000 RUB</td><td>Per request</td></tr>
+                <tr><td>Frequency</td><td>3 per month</td><td>Limit</td></tr>
+                <tr><td>NDFL Tax</td><td>13%</td><td>Auto-deducted</td></tr>
+            </table>
 
             <h3>Partner API Endpoints</h3>
             <table>
-                <thead>
-                    <tr><th>Endpoint</th><th>Метод</th><th>Описание</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td><code>/api/partner/auth</code></td><td>POST</td><td>Аутентификация партнёра</td></tr>
-                    <tr><td><code>/api/partner/stats</code></td><td>GET</td><td>KPI метрики дашборда</td></tr>
-                    <tr><td><code>/api/partner/earnings</code></td><td>GET</td><td>История начислений</td></tr>
-                    <tr><td><code>/api/partner/apply</code></td><td>POST</td><td>Заявка на партнёрство</td></tr>
-                    <tr><td><code>/api/partner/packs</code></td><td>GET</td><td>Список паков партнёра</td></tr>
-                    <tr><td><code>/api/partner/packs</code></td><td>POST</td><td>Создать новый пак</td></tr>
-                    <tr><td><code>/api/partner/packs/:id</code></td><td>PUT</td><td>Обновить пак</td></tr>
-                    <tr><td><code>/api/partner/packs/:id</code></td><td>DELETE</td><td>Удалить пак</td></tr>
-                    <tr><td><code>/api/partner/test-prompt</code></td><td>POST</td><td>Тестовая генерация (с квотой)</td></tr>
-                    <tr><td><code>/api/referral/withdraw</code></td><td>POST</td><td>Запрос на вывод средств</td></tr>
-                </tbody>
+                <tr><th>Endpoint</th><th>Method</th><th>Description</th></tr>
+                <tr><td><code>/api/partner/auth</code></td><td>POST</td><td>Authentication</td></tr>
+                <tr><td><code>/api/partner/stats</code></td><td>GET</td><td>Dashboard KPIs</td></tr>
+                <tr><td><code>/api/partner/packs</code></td><td>GET/POST</td><td>List/Create packs</td></tr>
+                <tr><td><code>/api/partner/packs/:id</code></td><td>PUT/DELETE</td><td>Update/Delete pack</td></tr>
+                <tr><td><code>/api/partner/test-prompt</code></td><td>POST</td><td>Test generation</td></tr>
+                <tr><td><code>/api/partner/withdraw</code></td><td>POST</td><td>Request withdrawal</td></tr>
             </table>
-
-            <h3>Deferred Earnings Flow</h3>
-            <p>Защита от chargebacks: комиссия зачисляется ПОСЛЕ завершения генерации.</p>
-            <pre><code>Payment Succeeded → status: 'pending' (баланс не обновляется)
-                      ↓
-Generation Complete → status: 'credited' (баланс +)
-                      ↓ (если refund до генерации)
-Refund Before Gen → status: 'cancelled' (баланс 0)</code></pre>
-
-            <h3>11 Partner Cabinet Pages</h3>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>1. Dashboard</h4>
-                    <p>KPI, график, активность</p>
-                </div>
-                <div class="feature-card">
-                    <h4>2. Earnings</h4>
-                    <p>История начислений</p>
-                </div>
-                <div class="feature-card">
-                    <h4>3. Referrals</h4>
-                    <p>Список рефералов</p>
-                </div>
-                <div class="feature-card">
-                    <h4>4. Withdrawals</h4>
-                    <p>Запросы на вывод</p>
-                </div>
-                <div class="feature-card">
-                    <h4>5. Packs List</h4>
-                    <p>Все паки партнёра</p>
-                </div>
-                <div class="feature-card">
-                    <h4>6. Pack Create</h4>
-                    <p>Новый пак</p>
-                </div>
-                <div class="feature-card">
-                    <h4>7. Pack Edit</h4>
-                    <p>Редактор (3 колонки)</p>
-                </div>
-                <div class="feature-card">
-                    <h4>8. Pack Preview</h4>
-                    <p>Предпросмотр</p>
-                </div>
-                <div class="feature-card">
-                    <h4>9. Test Generation</h4>
-                    <p>Тестирование промптов</p>
-                </div>
-                <div class="feature-card">
-                    <h4>10. Settings</h4>
-                    <p>Профиль, реквизиты</p>
-                </div>
-                <div class="feature-card">
-                    <h4>11. Apply</h4>
-                    <p>Заявка на партнёрство</p>
-                </div>
-            </div>
         </section>
 
         <!-- EDGE RUNTIME -->
